@@ -7,6 +7,6 @@ def hello():
     return "Hello World"
 
 @app.route("/temp")
-def hello():
+def temp():
     return "Temp"
 
