@@ -30,4 +30,3 @@ def getQuestions(questionsAddr):
             questions_list.append(q)
     return questions_list
 
-print(getQuestions("..\data\questions.json"))
