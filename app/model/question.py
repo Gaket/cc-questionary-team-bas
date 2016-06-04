@@ -8,16 +8,21 @@ class Question:
 
 
 class MultipleAnswersQuestion(Question):
-    def __init__(self):
-        variants = []
+    variants = []
+
+    def __init__(self, text, variants):
+        self.text = text
+        self.variants = self.variants
 
 
 class NumericQuestion(Question):
-    def __init__(self):
-        min = 1
-        max = 10
-        step = 1
+    def __init__(self, text, min, max, step):
+        self.text = text
+        self.min = int(min)
+        self.max = int(max)
+        self.step = int(step)
 
 
 class OpenQuestion(Question):
-    pass
+    def __init__(self, text):
+        self.text = text
