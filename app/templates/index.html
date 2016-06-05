@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
     <title>Cloud computing BAS team</title>
 
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -28,34 +27,29 @@
         <div class="jumbotron">
             <h1>Welcome!</h1>
             <p class="lead"></p>
-
+            <p><a class="btn btn-lg btn-success" href="results" role="button">Check results here :)</a>
+            </p>
         </div>
 
         <div class="row marketing">
-            <div>
+            <div class="col-lg-6">
                 <h4>Question 1</h4>
-                <p>What type of databases are you planning to connect to the system?</p>
+                <p>{{survey.questions[0].text}}</p>
 
                 <h4>Question 2</h4>
-                <p>Please assign importance of data reliability for the system</p>
+                <p>{{survey.questions[1].text}}</p>
 
                 <h4>Question 3</h4>
-                <p>Please assign importance of system ability to process data in real-time</p>
+                <p>{{survey.questions[2].text}}</p>
             </div>
 
-            <div>
+            <div class="col-lg-6">
                 <h4>Question 4</h4>
-                <p>Please assign importance of system ability to process data in real-time</p>
+                <p>{{survey.questions[3].text}}</p>
 
                 <h4>Question 5</h4>
-                <p>Please assign importance of system ability to process data in real-time</p>
+                <p>{{survey.questions[4].text}}</p>
 
-                <h4>Question 6</h4>
-                <p>Have you found this survey interesting?</p>
-            </div>
-            <div>
-                <p><a class="btn btn-lg btn-success" href="results" role="button">Check results here :)</a>
-                </p>
             </div>
         </div>
 
