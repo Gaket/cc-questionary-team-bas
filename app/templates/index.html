@@ -41,10 +41,10 @@
                     {% for ans in value['variants'] %}
                         <label>
                             <input type="checkbox" name="{{ ans }}"
-                                   value="checked"> {{ ans }}
+                          value="checked"> {{ ans }}
                         </label>
                     {% endfor %}
-                    <div>
+                    </div>
                 {% elif value['type'] == 'num' %}
                     <div class="checkbox">
                     {% for ans in range(value.min, value.max, value.step) %}
