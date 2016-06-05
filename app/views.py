@@ -11,9 +11,10 @@ def hello():
     elif request.method == 'POST':
         pass
 
-@app.route()
-def process_question():
-    pass
+# @app.route()
+# def process_question():
+#     pass
+
 # @app.route('/')
 # def world():
 #     user = {'nickname': 'You' }
@@ -21,11 +22,11 @@ def process_question():
 #                            title = 'World',
 #                            user = user)
 
-@app.route('/temp')
+@app.route('/results')
 def chart():
     labels = ['First','second']
-    values = [1,9,4]
-    return render_template('temp.html', values=values, labels=labels)
+    values = [1,9]
+    return render_template('results.html', values=values, labels=labels)
 
 # @app.route('/hash/<int:survey_hash>', methods=['POST'])
 # def send_result(survey_hash):
