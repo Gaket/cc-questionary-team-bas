@@ -32,9 +32,31 @@
         </div>
 
         <div class="row marketing">
-            <div class="col-lg-6">
+            <div>
                 <h4>Question 1</h4>
                 <p>{{survey.questions[0].text}}</p>
+                <div class="checkbox">
+                    {% for answers in Q1 %}
+                        <label>
+                            <input type="checkbox" name="{{ type }}" value="checked"> {{ Q1.ans }}
+                        </label>
+                    {% endfor %}
+                    <label>
+                        <input type="checkbox" name="postgres" value="checked"> PostgreSQL
+                    </label>
+                    <label>
+                        <input type="checkbox" name="mysql" value="checked"> MySQL
+                    </label>
+                    <label>
+                        <input type="checkbox" name="MSSQL" value="checked"> MSSQL
+                    </label>
+                    <label>
+                        <input type="checkbox" name="Hadoop" value="checked"> Hadoop
+                    </label>
+                    <label>
+                        <input type="checkbox" name="Oracle" value="checked"> Oracle
+                    </label>
+                </div>
 
                 <h4>Question 2</h4>
                 <p>{{survey.questions[1].text}}</p>
@@ -43,7 +65,7 @@
                 <p>{{survey.questions[2].text}}</p>
             </div>
 
-            <div class="col-lg-6">
+            <div>
                 <h4>Question 4</h4>
                 <p>{{survey.questions[3].text}}</p>
 

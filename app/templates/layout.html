@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ title }}</title>
 </head>
 <body>
 
-<script type=text/javascript src="{{
-  url_for('static', filename='jquery.js') }}"></script>
-<script type=text/javascript src="{{
-  url_for('static', filename='model.js') }}"></script>
+<h1> Hello, {{ user.nickname }}!</h1>
+{#<script type=text/javascript src="{{#}
+{#  url_for('static', filename='jquery.js') }}"></script>#}
+{#<script type=text/javascript src="{{#}
+{#  url_for('static', filename='model.js') }}"></script>#}
 
 </body>
 </html>
