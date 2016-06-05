@@ -28,7 +28,7 @@ def chart():
     values = [1,9,3,2]
     return render_template('results.html', values=values, labels=labels)
 
-@app.route('/results')
+@app.route('/vote')
 def result():
     return request.form.get('name_MySQL')
 
