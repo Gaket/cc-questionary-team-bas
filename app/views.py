@@ -33,21 +33,33 @@ def chart():
 
 @app.route('/login', methods=['GET', 'POST'])
 def check_login():
-    if request.method == 'GET':
-        return render_template('login.html')
-    elif request.method == 'POST':
-        if request.form['username'] == 'admin' and \
+    if request.method.lower() == 'get':
+        msg = "Pleas enter username and password to access survey statistics"
+        return render_template('login.html', message=msg)
+    elif request.method.lower() == 'post':
+        if request.form['user'] == 'admin' and \
                 request.form['password'] == 'secret':
             session['admin'] = True
-            return redirect(url_for('statistics.html'))
+            return redirect(url_for('get_statistics'))
+        else:
+            return render_template('login.html', message="Wrong user or password")
 
 
 @app.route('/statistics')
 def get_statistics():
-    if not session['admin']:
-        return redirect(url_for('login'))
+    if 'admin' not in session:
+        return redirect(url_for('check_login'))
     else:
-        data = json.load(os.path.join('app',
+        data = json.load(open(os.path.join('app',
                                       'data',
-                                      'aggregated_data.json'))
+                                      'aggregated_data.json')))
+        chart_labels = list()
+        chart_values = list()
+        for ans in data:
+            if ans['key'] == 'about DB':
+                for elem, val in ans['answer'].items():
+                    chart_labels.append(elem)
+                    chart_values.append(float(val))
+        data.append(chart_labels)
+        data.append(chart_values)
         return render_template('statistics.html', data=data)

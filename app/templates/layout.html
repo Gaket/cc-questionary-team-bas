@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Survey</title>
-    {#<script type=text/javascript src="{{#}
-    {#  url_for('static', filename='jquery.js') }}"></script>#}
-    {#<script type=text/javascript src="{{#}
-    {#  url_for('static', filename='model.js') }}"></script>#}
+    <script type=text/javascript src="{{
+      url_for('static', filename='jquery.js') }}"></script>
+    <script type=text/javascript src="{{
+      url_for('static', filename='model.js') }}"></script>
+    <script type=text/javascript src="{{
+      url_for('static', filename='Chart.min.js') }}"></script>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">

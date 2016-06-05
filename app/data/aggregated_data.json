@@ -1,45 +1,31 @@
 [
   {
+    "key":"about system",
     "question_id": 1,
     "answer": [
-      0,
-      0,
-      0,
-      0,
-      0
+      2.4
     ]
   },
   {
+    "key":"about data",
     "question_id": 2,
     "answer": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
+      3.5
     ]
   },
   {
+    "key":"about DB",
     "question_id": 3,
-    "answer": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ]
+    "answer": {
+      "MySQL":1,
+      "PostgreSQL":4,
+      "MSSQL":0,
+      "Hadoop":8,
+      "Oracle":8
+    }
   },
   {
+    "key":"about UI",
     "question_id": 4,
     "answer": [
       "Some text",
@@ -47,10 +33,11 @@
     ]
   },
   {
+    "key":"about Customer",
     "question_id": 5,
     "answer": [
-      "Some text",
-      "Another opinion"
+      "LOL",
+      "Nobody"
     ]
   }
 ]
