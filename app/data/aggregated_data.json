@@ -1,6 +1,56 @@
-{
-  "1": [
-    "mult",
-    "q_results"    :    [0]
-  ]
-}
+[
+  {
+    "question_id": 1,
+    "answer": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "question_id": 2,
+    "answer": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "question_id": 3,
+    "answer": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "question_id": 4,
+    "answer": [
+      "Some text",
+      "Another opinion"
+    ]
+  },
+  {
+    "question_id": 5,
+    "answer": [
+      "Some text",
+      "Another opinion"
+    ]
+  }
+]
