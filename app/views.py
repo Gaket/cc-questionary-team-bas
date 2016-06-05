@@ -9,13 +9,16 @@ def hello():
     if request.method == 'GET':
         return render_template('index.html', survey=survey)
     elif request.method == 'POST':
-        res = list()
+        qs = [list(), list(), list(), list(), list()]
+        i = len(qs) - 1
         for key, item in survey.questions.items():
+            qs[i].append(key)
             if item.type == 'mult':
                 for var in item.variants:
-                    res.append(request.form.get(var))
-            res.append(request.form.get(key))
-        return render_template('results.html', results=res)
+                    qs[i].append(request.form.get(var))
+            qs[i].append(request.form.get(key))
+            i -= 1
+        return render_template('results.html', results=qs)
 
 # @app.route()
 # def process_question():
