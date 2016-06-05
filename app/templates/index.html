@@ -1,33 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Cloud computing BAS team</title>
-
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-<div class="container">
-    <div class="header">
-        <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="#">Home</a>
-                </li>
-                <li role="presentation"><a href="#">Log In</a>
-            </ul>
-        </nav>
-        <h3 class="text-muted">CC Questionnaire</h3>
-    </div>
-
+{% extends layout.html %}
+{% block content %}
     <div class="jumbotron">
         <h1>Welcome!</h1>
         <p class="lead"></p>
-        <p><a class="btn btn-lg btn-success" href="results" role="button">Check results here :)</a>
+        <p><a class="btn btn-lg btn-success" href="/statistics" role="button">Check results here :)</a>
         </p>
     </div>
 
@@ -68,12 +44,4 @@
         {#            <a class="btn btn-lg btn-success" href="/results/{{ survey.hash }}" role="button">Submit</a>#}
         {#        </div>#}
     </div>
-
-    <footer class="footer">
-        <p>&copy; BAS team 2016</p>
-    </footer>
-
-</div>
-</body>
-
-</html>
+{% endblock %}
