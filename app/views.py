@@ -5,7 +5,7 @@ from flask import render_template
 @app.route('/')
 def hello():
     survey = Survey("app\data\questions.json")
-    return render_template('index.html', text= survey.questions[0].text)
+    return render_template('index.html', survey=survey)
 
 @app.route('/temp')
 def temp():
