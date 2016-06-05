@@ -33,7 +33,7 @@
 
     <div class="row marketing">
         <div>
-            <form action="." method="get" name="vote">
+            <form action="." method="post" name="vote">
                 {% for key, value in survey.questions.items() %}
                     <h4>Question {{ key }}</h4>
                     <p>{{ survey.questions[key].text }}</p>
@@ -41,7 +41,7 @@
                         <div class="checkbox">
                             {% for ans in value['variants'] %}
                                 <label>
-                                    <input type="checkbox" name="{{ key }}"
+                                    <input type="checkbox" name="{{ ans }}"
                                            value="{{ ans }}"> {{ ans }}
                                 </label>
                             {% endfor %}
