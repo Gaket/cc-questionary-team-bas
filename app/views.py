@@ -18,6 +18,10 @@ def hello():
 def temp():
     return "Temp"
 
+@app.route('/results')
+def result():
+    return "Results charts"
+
 # @app.route('/hash/<int:survey_hash>', methods=['POST'])
 # def send_result(survey_hash):
 #     pass

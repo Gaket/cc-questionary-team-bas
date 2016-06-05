@@ -33,6 +33,7 @@
 
     <div class="row marketing">
         <div>
+            <form action="/submit" method='GET'>
             {% for key, value in survey.questions.items() %}
                 <h4>Question {{ key }}</h4>
                 <p>{{ survey.questions[key].text }}</p>
@@ -60,7 +61,7 @@
                     </div>
                 {% endif %}
             {% endfor %}
-
+            </form>
         </div>
     </div>
 
