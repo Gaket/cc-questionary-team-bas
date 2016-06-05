@@ -15,17 +15,17 @@ class Survey:
 def getQuestions(questionsAddr):
     # Parse JSON to get data and return list of questions (childs of Question)
     with open(questionsAddr) as questions_file:
-        questions = json.load(questions_file)
-        q = dict()
-        for key in questions:
-            if questions[key]["archived"]:
+        questions = json.load(questions_file)['questions']
+        q = list()
+        for question in questions:
+            if question["archived"]:
                 pass
-            if questions[key]["type"] == "num":
-                q[key] = NumericQuestion(**questions[key])
-            elif questions[key]["type"] == "mult":
-                q[key] = MultipleAnswersQuestion(**questions[key])
-            elif questions[key]["type"] == "open":
-                q[key] = OpenQuestion(**questions[key])
+            if question["type"] == "num":
+                q.append(NumericQuestion(**question))
+            elif question["type"] == "mult":
+                q.append(MultipleAnswersQuestion(**question))
+            elif question["type"] == "open":
+                q.append(OpenQuestion(**question))
             else:
                 print("Type error")
     return q

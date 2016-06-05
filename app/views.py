@@ -2,15 +2,28 @@ from app import app
 from app.main.survey import Survey
 from flask import render_template
 from flask import request
+from app.forms import SurveyForm
 
 
 @app.route('/', methods=['GET', 'POST'])
 def hello():
-    if request.method == 'GET':
-        survey = Survey("app/data/questions.json")
-        return render_template('index.html', survey=survey)
-    elif request.method == 'POST':
-        pass
+    form = SurveyForm()
+    print(form.questions,
+          form.question,
+          form.question_1,
+          form.question_2,
+          form.question_3,
+          form.question_4,
+          form.question_5
+          )
+    # for q in form.questions:
+    #     form.add_elem(q.label, q)
+    if form.validate_on_submit():
+        print([question.data for question in form.questions])
+        # return save_survey_data(form)
+    else:
+        print(form.errors)
+    return render_template('index.html', form=form)
 
 
 @app.route('/survey/')

@@ -5,6 +5,7 @@ class Question:
     def __init__(self, **params):
         self.id = params['id']
         self.text = params['text']
+        self.key = params['key']
 
 
 class MultipleAnswersQuestion(Question):

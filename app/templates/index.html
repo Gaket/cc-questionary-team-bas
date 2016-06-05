@@ -33,36 +33,48 @@
 
     <div class="row marketing">
         <div>
-            {% for key, value in survey.questions.items() %}
-                <h4>Question {{ key }}</h4>
-                <p>{{ survey.questions[key].text }}</p>
-                {% if value['type'] == 'mult' %}
-                    <div class="checkbox">
-                    {% for ans in value['variants'] %}
-                        <label>
-                            <input type="checkbox" name="{{ ans }}"
-                          value="checked"> {{ ans }}
-                        </label>
-                    {% endfor %}
-                    </div>
-                {% elif value['type'] == 'num' %}
-                    <div class="checkbox">
-                    {% for ans in range(value.min, value.max, value.step) %}
-                        <label>
-                            <input type="checkbox" name="{{ ans }}"
-                                   value="checked"> {{ ans }}
-                        </label>
-                    {% endfor %}
-                    </div>
-                {% elif value['type'] == 'open' %}
-                    <div class="text_field">
-                    <input type="text" name="Answer">
-                    </div>
-                {% endif %}
-            {% endfor %}
+{#            {% for key, value in survey.questions.items() %}#}
+{#                <h4>Question {{ key }}</h4>#}
+{#                <p>{{ survey.questions[key].text }}</p>#}
+{#                {% if value['type'] == 'mult' %}#}
+{#                    <div class="checkbox">#}
+{#                    {% for ans in value['variants'] %}#}
+{#                        <label>#}
+{#                            <input type="checkbox" name="{{ ans }}"#}
+{#                          value="checked"> {{ ans }}#}
+{#                        </label>#}
+{#                    {% endfor %}#}
+{#                    </div>#}
+{#                {% elif value['type'] == 'num' %}#}
+{#                    <div class="checkbox">#}
+{#                    {% for ans in range(value.min, value.max, value.step) %}#}
+{#                        <label>#}
+{#                            <input type="checkbox" name="{{ ans }}"#}
+{#                                   value="checked"> {{ ans }}#}
+{#                        </label>#}
+{#                    {% endfor %}#}
+{#                    </div>#}
+{#                {% elif value['type'] == 'open' %}#}
+{#                    <div class="text_field">#}
+{#                    <input type="text" name="Answer">#}
+{#                    </div>#}
+{#                {% endif %}#}
+{#            {% endfor %}#}
+            <form method="post">
+                {{ form.hidden_tag() }}
+{#                {% for q in form.questions %}#}
+{#                {{ q }}#}
+{#                {% endfor %}#}
+                {{ form.question_1 }}
+                {{ form.question_2 }}
+                {{ form.question_3 }}
+                {{ form.question_4 }}
+                {{ form.question_5 }}
+                <input type="submit">
+            </form>
         </div>
         <div>
-            <a class="btn btn-lg btn-success" href="/results/{{ survey.hash }}" role="button">Submit</a>
+            <a class="btn btn-lg btn-success" href="/results/{{ form.survey.hash }}" role="button">Submit</a>
         </div>
     </div>
 
