@@ -7,7 +7,7 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 </head>
 
 <body>
@@ -33,6 +33,7 @@
 
     <div class="row marketing">
         <div>
+            <script src="../static/jquery.min.js"></script>
             <form action="." method="post" name="vote">
                 {% for key, value in survey.questions.items() %}
                     <h4>Question {{ key }}</h4>
@@ -42,7 +43,7 @@
                             {% for ans in value['variants'] %}
                                 <label>
                                     <input type="checkbox" name="{{ ans }}"
-                                           value="{{ ans }}"> {{ ans }}
+                                           value="{{ ans }}" required> {{ ans }}
                                 </label>
                             {% endfor %}
                         </div>
@@ -51,12 +52,12 @@
                             {#                    {% for ans in range(value.min, value.max, value.step) %}#}
 
                             <input type="range" min="{{ value.min }}" max="{{ value.max }}" step="{{ value.step }}"
-                                   value="{{ value.min }}, {{ value.max }}" name="{{ key }}"> (from 1 to 10)
+                                   value="{{ value.min }}, {{ value.max }}" name="{{ key }}" required> (from 1 to 10)
                             {#                    {% endfor %}#}
                         </div>
                     {% elif value['type'] == 'open' %}
                         <div class="text_field">
-                            <input type="text" name="{{ key }}" value="{{ value.type }}">
+                            <input type="text" name="{{ key }}" required>
                         </div>
                     {% endif %}
                 {% endfor %}
