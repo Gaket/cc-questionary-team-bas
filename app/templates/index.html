@@ -33,44 +33,40 @@
 
         <div class="row marketing">
             <div>
-                <h4>Question 1</h4>
-                <p>{{survey.questions[0].text}}</p>
+                {% for key, value in survey.questions.items() %}
+                <h4>Question {{ key }}</h4>
+                <p>{{ survey.questions[key].text }}</p>
+                {% if value['type'] == 'mult' %}
                 <div class="checkbox">
-                    {% for answers in Q1 %}
+                    {% for ans in value['variants'] %}
                         <label>
-                            <input type="checkbox" name="{{ type }}" value="checked"> {{ Q1.ans }}
+                            <input type="checkbox" name="{{ ans }}"
+                                   value="checked"> {{ ans }}
                         </label>
                     {% endfor %}
-                    <label>
-                        <input type="checkbox" name="postgres" value="checked"> PostgreSQL
-                    </label>
-                    <label>
-                        <input type="checkbox" name="mysql" value="checked"> MySQL
-                    </label>
-                    <label>
-                        <input type="checkbox" name="MSSQL" value="checked"> MSSQL
-                    </label>
-                    <label>
-                        <input type="checkbox" name="Hadoop" value="checked"> Hadoop
-                    </label>
-                    <label>
-                        <input type="checkbox" name="Oracle" value="checked"> Oracle
-                    </label>
-                </div>
+                {%  elif value['type'] == 'num' %}
+                    {% for ans in range(value.min, value.max, value.step)  %}
+                        <label>
+                            <input type="checkbox" name="{{ ans }}"
+                                   value="checked"> {{ ans }}
+                        </label>
+                    {% endfor %}
+                {%  elif value['type'] == 'open' %}
+                        <input type="text" name="Answer">
+                {% endif %}
+            {%  endfor %}
 
-                <h4>Question 2</h4>
-                <p>{{survey.questions[1].text}}</p>
-
-                <h4>Question 3</h4>
-                <p>{{survey.questions[2].text}}</p>
-            </div>
-
-            <div>
-                <h4>Question 4</h4>
-                <p>{{survey.questions[3].text}}</p>
-
-                <h4>Question 5</h4>
-                <p>{{survey.questions[4].text}}</p>
+{#                <h4>Question 2</h4>#}
+{#                <p>{{survey.questions[1].text}}</p>#}
+{##}
+{#                <h4>Question 3</h4>#}
+{#                <p>{{survey.questions[2].text}}</p>#}
+{##}
+{#                <h4>Question 4</h4>#}
+{#                <p>{{survey.questions[3].text}}</p>#}
+{##}
+{#                <h4>Question 5</h4>#}
+{#                <p>{{survey.questions[4].text}}</p>#}
 
             </div>
         </div>

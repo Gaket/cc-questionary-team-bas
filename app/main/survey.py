@@ -12,16 +12,17 @@ def getQuestions(questionsAddr):
     with open(questionsAddr) as questions_file:
         questions = json.load(questions_file)
         questions_list = []
+        q = dict()
         for key in questions:
             text = questions[key]["text"]
             variants = questions[key]["variants"]
             if questions[key]["type"] == "num":
-                q = NumericQuestion(text, variants)
+                q[key] = NumericQuestion(text, variants)
             elif questions[key]["type"] == "mult":
-                q = MultipleAnswersQuestion(text, variants)
+                q[key] = MultipleAnswersQuestion(text, variants)
             elif questions[key]["type"] == "open":
-                q = OpenQuestion(text)
+                q[key] = OpenQuestion(text)
             else:
                 print("Type error")
-            questions_list.append(q)
-    return questions_list
+            # questions_list.append(q)
+    return q

@@ -1,5 +1,5 @@
 {
-  "1": {
+  "about DB": {
     "type": "mult",
     "text": "What type of database are you planning to connect the system?",
     "variants": [
@@ -10,7 +10,7 @@
       "Oracle"
     ]
   },
-  "2": {
+  "about system": {
     "type": "num",
     "text": "Please assign importance of data reliability for the system:",
     "variants": [
@@ -19,7 +19,7 @@
       "1"
     ]
   },
-  "3": {
+  "about data": {
     "type": "num",
     "text": "Please assign importance of system ability to process data in real-time:",
     "variants": [
@@ -28,14 +28,14 @@
       "1"
     ]
   },
-  "4": {
+  "about UI": {
     "type": "open",
     "text": "What are the most important aspects for UI of the system?",
     "variants": []
   },
-  "5": {
+  "about Customer": {
     "type": "open",
-    "text": "Who is the main customers of the system",
+    "text": "Who is the main customers of the system?",
     "variants": []
   }
 }
