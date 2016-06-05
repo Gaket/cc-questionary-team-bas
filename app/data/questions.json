@@ -1,41 +1,41 @@
 {
-  "1": [
-    "mult",
-    "What type of database are you planning to connect the system?",
-    [
+  "1": {
+    "type": "mult",
+    "text": "What type of database are you planning to connect the system?",
+    "variants": [
       "MySQL",
       "PostgreSQL",
       "MSSQL",
       "Hadoop",
       "Oracle"
     ]
-  ],
-  "2": [
-    "numeric",
-    "Please assign importance of data reliability for the system:",
-    [
+  },
+  "2": {
+    "type": "num",
+    "text": "Please assign importance of data reliability for the system:",
+    "variants": [
       "1",
       "10",
       "1"
     ]
-  ],
-  "3": [
-    "numeric",
-    "Please assign importance of system ability to process data in real-time:",
-     [
+  },
+  "3": {
+    "type": "num",
+    "text": "Please assign importance of system ability to process data in real-time:",
+    "variants": [
       "1",
       "10",
       "1"
     ]
-  ],
-  "4": [
-    "open",
-    "What are the most important aspects for UI of the system?",
-    []
-  ],
-  "5": [
-    "open",
-    "Who is the main customers of the system",
-    []
-  ]
+  },
+  "4": {
+    "type": "open",
+    "text": "What are the most important aspects for UI of the system?",
+    "variants": []
+  },
+  "5": {
+    "type": "open",
+    "text": "Who is the main customers of the system",
+    "variants": []
+  }
 }

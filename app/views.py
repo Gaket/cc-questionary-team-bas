@@ -4,7 +4,7 @@ from flask import render_template
 
 @app.route('/')
 def hello():
-    survey = Survey("app\data\questions.json")
+    survey = Survey("app/data/questions.json")
     return render_template('index.html', survey=survey)
 
 @app.route('/temp')

@@ -22,6 +22,12 @@ class NumericQuestion(Question):
         self.max = int(max)
         self.step = int(step)
 
+    def __init__(self, text, values):
+        self.text = text
+        self.min = int(values[0])
+        self.max = int(values[1])
+        self.step = int(values[2])
+
 
 class OpenQuestion(Question):
     def __init__(self, text):
