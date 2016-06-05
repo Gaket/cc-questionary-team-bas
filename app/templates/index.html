@@ -1,28 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{%  extends "base.html" %}
 
-<head>
-    <title>Cloud computing BAS team</title>
-
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-<div class="container">
-    <div class="header">
-        <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="#">Home</a>
-                </li>
-                <li role="presentation"><a href="#">Log In</a>
-            </ul>
-        </nav>
-        <h3 class="text-muted">CC Questionnaire</h3>
-    </div>
+{% block content %}
 
     <div class="jumbotron">
         <h1>Welcome!</h1>
@@ -33,7 +11,6 @@
 
     <div class="row marketing">
         <div>
-            <form action="/submit" method='GET'>
             {% for key, value in survey.questions.items() %}
                 <h4>Question {{ key }}</h4>
                 <p>{{ survey.questions[key].text }}</p>
@@ -41,27 +18,26 @@
                     <div class="checkbox">
                     {% for ans in value['variants'] %}
                         <label>
-                            <input type="checkbox" name="{{ ans }}"
+                            <input type="checkbox" name="db" value="{{ ans }}"
                           value="checked"> {{ ans }}
                         </label>
                     {% endfor %}
                     </div>
                 {% elif value['type'] == 'num' %}
-                    <div class="checkbox">
+                    <div class="radiobutton">
                     {% for ans in range(value.min, value.max, value.step) %}
                         <label>
-                            <input type="checkbox" name="{{ ans }}"
-                                   value="checked"> {{ ans }}
+                            <input type="radio" name="{{ ans }}"
+                                   value="marked"> {{ ans }}
                         </label>
                     {% endfor %}
                     </div>
                 {% elif value['type'] == 'open' %}
                     <div class="text_field">
-                    <input type="text" name="Answer">
+                        <input type="text" name="Answer">
                     </div>
                 {% endif %}
             {% endfor %}
-            </form>
         </div>
     </div>
 
@@ -70,12 +46,4 @@
         <p><a class="btn btn-lg btn-success" href="results" role="button">Submit</a>
         </p>
     </div>
-
-    <footer class="footer">
-        <p>&copy; BAS team 2016</p>
-    </footer>
-
-</div>
-</body>
-
-</html>
+{%  endblock %}
