@@ -24,8 +24,8 @@ def hello():
 
 @app.route('/results')
 def chart():
-    labels = ['First','second']
-    values = [1,9]
+    labels = ['First','second', 'third variant', "and here some other"]
+    values = [1,9,3,2]
     return render_template('results.html', values=values, labels=labels)
 
 # @app.route('/hash/<int:survey_hash>', methods=['POST'])
