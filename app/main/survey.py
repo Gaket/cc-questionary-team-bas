@@ -6,7 +6,7 @@ from app.model.question import OpenQuestion
 
 class Survey:
     def __init__(self, questionsAddr):
-        self.hash = str(int(time.time()))
+        self.hash = str(int(time.time())).__hash__()
         self.questions = getQuestions(questionsAddr)
 
 def getQuestions(questionsAddr):

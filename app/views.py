@@ -1,12 +1,19 @@
 from app import app
 from app.main.survey import Survey
 from flask import render_template
+from flask import request
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def hello():
-    survey = Survey("app/data/questions.json")
-    return render_template('index.html', survey=survey)
+    if request.method == 'GET':
+        survey = Survey("app/data/questions.json")
+        return render_template('index.html', survey=survey)
+    elif request.method == 'POST':
+        pass
 
+@app.route()
+def process_question():
+    pass
 # @app.route('/')
 # def world():
 #     user = {'nickname': 'You' }
