@@ -15,8 +15,10 @@ def hello():
 #                            user = user)
 
 @app.route('/temp')
-def temp():
-    return "Temp"
+def chart():
+    labels = ['First','second']
+    values = [1,9,4]
+    return render_template('temp.html', values=values, labels=labels)
 
 # @app.route('/hash/<int:survey_hash>', methods=['POST'])
 # def send_result(survey_hash):
