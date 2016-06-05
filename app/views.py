@@ -3,6 +3,7 @@ from app.main.survey import Survey
 from flask import render_template
 from flask import request
 
+
 @app.route('/', methods=['GET', 'POST'])
 def hello():
     if request.method == 'GET':
@@ -11,7 +12,8 @@ def hello():
     elif request.method == 'POST':
         pass
 
-@app.route()
+
+@app.route('/survey/')
 def process_question():
     pass
 # @app.route('/')
@@ -20,6 +22,7 @@ def process_question():
 #     return render_template("layout.html",
 #                            title = 'World',
 #                            user = user)
+
 
 @app.route('/temp')
 def temp():
