@@ -1,6 +1,28 @@
-{%  extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
+<head>
+    <title>Cloud computing BAS team</title>
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="#">Home</a>
+                </li>
+                <li role="presentation"><a href="#">Log In</a>
+            </ul>
+        </nav>
+        <h3 class="text-muted">CC Questionnaire</h3>
+    </div>
 
     <div class="jumbotron">
         <h1>Welcome!</h1>
@@ -18,32 +40,37 @@
                     <div class="checkbox">
                     {% for ans in value['variants'] %}
                         <label>
-                            <input type="checkbox" name="db" value="{{ ans }}"
+                            <input type="checkbox" name="{{ ans }}"
                           value="checked"> {{ ans }}
                         </label>
                     {% endfor %}
                     </div>
                 {% elif value['type'] == 'num' %}
-                    <div class="radiobutton">
+                    <div class="checkbox">
                     {% for ans in range(value.min, value.max, value.step) %}
                         <label>
-                            <input type="radio" name="{{ ans }}"
-                                   value="marked"> {{ ans }}
+                            <input type="checkbox" name="{{ ans }}"
+                                   value="checked"> {{ ans }}
                         </label>
                     {% endfor %}
                     </div>
                 {% elif value['type'] == 'open' %}
                     <div class="text_field">
-                        <input type="text" name="Answer">
+                    <input type="text" name="Answer">
                     </div>
                 {% endif %}
             {% endfor %}
         </div>
+        <div>
+            <a class="btn btn-lg btn-success" href="/results/{{ survey.hash }}" role="button">Submit</a>
+        </div>
     </div>
 
-    <div>
-        <p class="lead"></p>
-        <p><a class="btn btn-lg btn-success" href="results" role="button">Submit</a>
-        </p>
-    </div>
-{%  endblock %}
+    <footer class="footer">
+        <p>&copy; BAS team 2016</p>
+    </footer>
+
+</div>
+</body>
+
+</html>

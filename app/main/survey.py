@@ -1,10 +1,12 @@
 import json
+import time
 from app.model.question import NumericQuestion
 from app.model.question import MultipleAnswersQuestion
 from app.model.question import OpenQuestion
 
 class Survey:
     def __init__(self, questionsAddr):
+        self.hash = str(int(time.time())).__hash__()
         self.questions = getQuestions(questionsAddr)
 
 def getQuestions(questionsAddr):
