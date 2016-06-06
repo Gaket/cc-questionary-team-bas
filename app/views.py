@@ -58,8 +58,6 @@ def write_aggregated(qs):
     pass
 
 
-
-
 @app.route('/results')
 def chart():
     labels = ['First', 'second', 'third variant', "and here some other"]
