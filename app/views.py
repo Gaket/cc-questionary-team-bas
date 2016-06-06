@@ -28,27 +28,48 @@ def write_answer(qs):
 
 @app.route('/', methods=['GET', 'POST'])
 def hello():
-    survey = Survey("app/data/questions.json")
+    survey = Survey("app/data/questions.json", "en")
     if request.method == 'GET':
-        return render_template('index.html', survey=survey)
+        return render_template('index.html', survey=survey, lang="en")
     elif request.method == 'POST':
-        qs = dict()
-        answers = list()
-        for key, item in survey.questions.items():
-            answer = dict()
-            answer[key] = key
-            if 'answer' not in answer:
-                answer['answer'] = list()
-            if item.type == 'mult':
-                for var in item.variants:
-                    answer['answer'].append(request.form.get(var))
-            else:
-                answer['answer'].append(request.form.get(key))
-            answers.append(answer)
-        qs['answers'] = answers
-        # qs = request.form['data']
+        qs = getData(survey)
         write_answer(qs)
         return render_template('thankyou.html', results=qs)
+
+
+@app.route('/ru', methods=['GET', 'POST'])
+def helloRu():
+    survey = Survey("app/data/questions.json", "ru")
+    if request.method == 'GET':
+        return render_template('index.html', survey=survey, lang="ru")
+    elif request.method == 'POST':
+        qs = getData(survey)
+        write_answer(qs)
+        return render_template('thankyou.html', results=qs)
+
+def getData(survey):
+    qs = dict()
+    answers = list()
+    for key, item in survey.questions.items():
+        answer = dict()
+        answer[key] = key
+        if 'answer' not in answer:
+            answer['answer'] = list()
+        if item.type == 'mult':
+            for var in item.variants:
+                answer['answer'].append(request.form.get(var))
+        else:
+            answer['answer'].append(request.form.get(key))
+        answers.append(answer)
+    qs['answers'] = answers
+
+
+
+@app.route('/results')
+def chart():
+    labels = ['First', 'second', 'third variant', "and here some other"]
+    values = [1, 9, 3, 2]
+    return render_template('results.html', values=values, labels=labels)
 
 
 @app.route('/login', methods=['GET', 'POST'])

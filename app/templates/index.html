@@ -1,17 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="jumbotron">
-        <h1>Welcome!</h1>
-        <p class="lead"></p>
-        <p><a class="btn btn-lg btn-success" href="/results" role="button">Check results here :)</a>
-        </p>
-    </div>
+    <h1>{% if lang == 'en' %} Welcome
+        {% elif lang == 'ru' %} Добро пожаловать
+        {% endif %}!
+    </h1>
 
     <div class="row marketing">
         <div>
-            <form id="formsurvey" action="." method="post" name="vote">
+            <form action="." method="post" name="vote">
+                {% set counter = 1 -%}
                 {% for key, value in survey.questions.items() %}
-                    <h4>Question {{ key }}</h4>
+                    <h4>{% if lang == 'en' %} Question
+                        {% elif lang == 'ru' %} Вопрос
+                        {% endif %}
+                        {{ counter + loop.index0 }}:
+                    </h4>
                     <p>{{ survey.questions[key].text }}</p>
                     {% if value['type'] == 'mult' %}
                         <div class="checkbox">
@@ -35,7 +38,7 @@
                     {% endif %}
                 {% endfor %}
                 </br>
-                <input type="submit">
+                <input class="btn btn-success" type="submit">
             </form>
         </div>
     </div>
