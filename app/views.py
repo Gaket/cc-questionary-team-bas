@@ -1,5 +1,3 @@
-import json
-
 from app import app
 from app.main.survey import Survey
 from flask import render_template
