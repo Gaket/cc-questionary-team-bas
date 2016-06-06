@@ -1,11 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="jumbotron">
-        <h1>Welcome!</h1>
-        <p class="lead"></p>
-        <p><a class="btn btn-lg btn-success" href="/statistics" role="button">Check results here :)</a>
-        </p>
-    </div>
+    <h1>Welcome!</h1>
 
     <div class="row marketing">
         <div>
@@ -35,7 +30,7 @@
                     {% endif %}
                 {% endfor %}
                 </br>
-                <input type="submit">
+                <input class="btn btn-success" type="submit">
             </form>
         </div>
     </div>
