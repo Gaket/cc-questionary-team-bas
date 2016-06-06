@@ -1,7 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Thank you for answering the questionnaire</h1>
-    <p align="center"><a class="btn btn-lg btn-primary" href="/" role="button">Start again</a>
-        <a class="btn btn-lg btn-success" href="/results" role="button">Check results</a>
-    </p>
+<h1>
+    {% if lang == 'en' %} Thank you for answering the questionnaire
+    {% elif lang == 'ru' %} Спасибо за участие!
+    {% endif %}
+</h1>
+<p align="center">
+    <a class="btn btn-lg btn-primary" href="/index" role="button">
+        {% if lang == 'en' %} Start again
+        {% elif lang == 'ru' %} Пройти ещё раз
+        {% endif %}
+    </a>
+    <a class="btn btn-lg btn-success" href="/results" role="button">
+        {% if lang == 'en' %} Check results
+        {% elif lang == 'ru' %} Результаты
+        {% endif %}
+    </a>
+</p>
 {% endblock %}
