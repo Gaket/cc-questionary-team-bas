@@ -1,63 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Welcome!</h1>
 
-<head>
-    <title>Cloud computing BAS team</title>
+    <div class="row marketing">
+        <div>
+            <form action="." method="post" name="vote">
+                {% for key, value in survey.questions.items() %}
+                    <h4>Question {{ key }}</h4>
+                    <p>{{ survey.questions[key].text }}</p>
+                    {% if value['type'] == 'mult' %}
+                        <div class="checkbox">
+                            {% for ans in value['variants'] %}
+                                <label>
+                                    <input type="checkbox" name="{{ ans }}"
+                                           value="{{ ans }}" required> {{ ans }}
+                                </label>
+                            {% endfor %}
+                        </div>
+                    {% elif value['type'] == 'num' %}
+                        <div class="range">
 
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-    <div class="container">
-        <div class="header">
-            <nav>
-                <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="#">Home</a>
-                    </li>
-                    <li role="presentation"><a href="#">Log In</a>
-                </ul>
-            </nav>
-            <h3 class="text-muted">CC Questionnaire</h3>
+                            <input type="range" min="{{ value.min }}" max="{{ value.max }}" step="{{ value.step }}"
+                                   value="{{ value.min }}, {{ value.max }}" name="{{ key }}" required> (from 1 to 10)
+                        </div>
+                    {% elif value['type'] == 'open' %}
+                        <div class="text_field">
+                            <input type="text" name="{{ key }}" required>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </br>
+                <input class="btn btn-success" type="submit">
+            </form>
         </div>
-
-        <div class="jumbotron">
-            <h1>Welcome!</h1>
-            <p class="lead"></p>
-            <p><a class="btn btn-lg btn-success" href="results" role="button">Check results here :)</a>
-            </p>
-        </div>
-
-        <div class="row marketing">
-            <div class="col-lg-6">
-                <h4>Question 1</h4>
-                <p>{{survey.questions[0].text}}</p>
-
-                <h4>Question 2</h4>
-                <p>{{survey.questions[1].text}}</p>
-
-                <h4>Question 3</h4>
-                <p>{{survey.questions[2].text}}</p>
-            </div>
-
-            <div class="col-lg-6">
-                <h4>Question 4</h4>
-                <p>{{survey.questions[3].text}}</p>
-
-                <h4>Question 5</h4>
-                <p>{{survey.questions[4].text}}</p>
-
-            </div>
-        </div>
-
-        <footer class="footer">
-            <p>&copy; BAS team 2016</p>
-        </footer>
-
     </div>
-</body>
-
-</html>
+{% endblock %}

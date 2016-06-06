@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div>
+    <p><h2>{{ message }}</h2></p>
+    <form id="loginform" action="/login" method="post">
+        <input type="text" name="user" placeholder="username">
+        <input type="password" name="password" placeholder="password">
+        <input class="btn btn-success" type="submit" value="Log in">
+    </form>
+    </div>
+{% endblock %}
