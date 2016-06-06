@@ -122,3 +122,4 @@ def get_statistics(lang="en"):
 @app.route('/lang', methods=["POST"])
 def set_lang():
     session['lang'] = request.form.get('lang')
+    return redirect('/')
