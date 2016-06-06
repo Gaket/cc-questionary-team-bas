@@ -23,26 +23,26 @@
             <ul class="nav nav-pills pull-right">
                 <li role="presentation" class="active">
                     <a href="/">
-                        Home
-                        <!--{% if lang == 'en' %} Home-->
-                        <!--{% elif lang == 'ru' %} К опросу-->
-                        <!--{% endif %}-->
+                        <!--Home-->
+                        {% if lang == 'en' %} Home
+                        {% elif lang == 'ru' %} К опросу
+                        {% endif %}
                     </a>
                 </li>
                 <li role="presentation">
                     <a class="btn btn-warning" href="/statistics">
-                        Results
-                        <!--{% if lang == 'en' %} Results-->
-                        <!--{% elif lang == 'ru' %} Результаты-->
-                        <!--{% endif %}-->
+                        <!--Results-->
+                        {% if lang == 'en' %} Results
+                        {% elif lang == 'ru' %} Результаты
+                        {% endif %}
                     </a>
                 </li>
                 <li role="presentation">
                     <a href="/login">
-                        Login
-                        <!--{% if lang == 'en' %}  Log In-->
-                        <!--{% elif lang == 'ru' %} Войти-->
-                        <!--{% endif %}-->
+                        <!--Login-->
+                        {% if lang == 'en' %}  Log In
+                        {% elif lang == 'ru' %} Войти
+                        {% endif %}
                 </a>
             </ul>
         </nav>

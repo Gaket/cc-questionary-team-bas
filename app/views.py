@@ -12,6 +12,7 @@ import os
 from random import randrange
 
 @app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 @app.route('/main/<lang>', methods=['GET', 'POST'])
 def hello(lang="en"):
     survey = Survey("app/data/questions.json", lang)
@@ -50,22 +51,22 @@ def chart():
     return render_template('results.html', values=values, labels=labels)
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def check_login():
+@app.route('/login/<lang>', methods=['GET', 'POST'])
+def check_login(lang="en"):
     if request.method.lower() == 'get':
         msg = "Pleas enter username and password to access survey statistics"
-        return render_template('login.html', message=msg, lang="en")
+        return render_template('login.html', message=msg, lang=lang)
     elif request.method.lower() == 'post':
         if request.form['user'] == 'admin' and \
                 request.form['password'] == 'secret':
             session['admin'] = True
             return redirect(url_for('get_statistics'))
         else:
-            return render_template('login.html', message="Wrong user or password", lang="en")
+            return render_template('login.html', message="Wrong user or password", lang=lang)
 
 
 @app.route('/statistics')
-def get_statistics():
+def get_statistics(lang="en"):
     if 'admin' not in session:
         return redirect(url_for('check_login'))
     else:
@@ -82,4 +83,4 @@ def get_statistics():
                     chart_values.append(float(val))
         data.append(chart_labels)
         data.append(chart_values)
-        return render_template('statistics.html', data=data, lang="en")
+        return render_template('statistics.html', data=data, lang=lang)
