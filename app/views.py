@@ -40,7 +40,7 @@ def hello():
             i -= 1
 
         write_answer(qs)
-        return render_template('results.html', results=qs)
+        return render_template('thankyou.html', results=qs)
 
 
 @app.route('/results')
