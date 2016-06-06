@@ -1,41 +1,85 @@
 {
   "about DB": {
     "type": "mult",
-    "text": "What type of database are you planning to connect the system?",
-    "variants": [
-      "MySQL",
-      "PostgreSQL",
-      "MSSQL",
-      "Hadoop",
-      "Oracle"
-    ]
+    "en": {
+      "text": "What type of database are you planning to connect the system?",
+      "variants": [
+        "MySQL",
+        "PostgreSQL",
+        "MSSQL",
+        "Hadoop",
+        "Oracle"
+      ]
+    },
+    "ru": {
+      "text": "Какие типы баз данных вы планируете подключить к системе?",
+      "variants": [
+        "MySQL",
+        "PostgreSQL",
+        "MSSQL",
+        "Hadoop",
+        "Oracle"
+      ]
+    }
   },
   "about system": {
     "type": "num",
-    "text": "Please assign importance of data reliability for the system:",
-    "variants": [
-      "1",
-      "10",
-      "1"
-    ]
+    "en": {
+      "text": "Please assign importance of data reliability for the system:",
+      "variants": [
+        "1",
+        "10",
+        "1"
+      ]
+    },
+    "ru": {
+      "text": "Please assign importance of data reliability for the system:",
+      "variants": [
+        "1",
+        "10",
+        "1"
+      ]
+    }
   },
   "about data": {
     "type": "num",
-    "text": "Please assign importance of system ability to process data in real-time:",
-    "variants": [
-      "1",
-      "10",
-      "1"
-    ]
+    "en": {
+      "text": "Please assign importance of system ability to process data in real-time:",
+      "variants": [
+        "1",
+        "10",
+        "1"
+      ]
+    },
+    "ru": {
+      "text": "Please assign importance of system ability to process data in real-time:",
+      "variants": [
+        "1",
+        "10",
+        "1"
+      ]
+    }
   },
   "about UI": {
     "type": "open",
-    "text": "What are the most important aspects for UI of the system?",
-    "variants": []
+    "en": {
+      "text": "What are the most important aspects for UI of the system?",
+      "variants": []
+    },
+    "ru": {
+      "text": "What are the most important aspects for UI of the system?",
+      "variants": []
+    }
   },
   "about Customer": {
     "type": "open",
-    "text": "Who is the main customers of the system?",
-    "variants": []
+    "en": {
+      "text": "Who is the main customers of the system?",
+      "variants": []
+    },
+    "ru": {
+      "text": "Who is the main customers of the system?",
+      "variants": []
+    }
   }
 }
