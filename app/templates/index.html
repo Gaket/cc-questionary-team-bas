@@ -1,12 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Welcome!</h1>
+    <h1>{% if lang == 'en' %} Welcome
+        {% elif lang == 'ru' %} Добро пожаловать
+        {% endif %}!
+    </h1>
 
     <div class="row marketing">
         <div>
             <form action="." method="post" name="vote">
+                {% set counter = 1 -%}
                 {% for key, value in survey.questions.items() %}
-                    <h4>Question {{ key }}</h4>
+                    <h4>{% if lang == 'en' %} Question
+                        {% elif lang == 'ru' %} Вопрос
+                        {% endif %}
+                        {{ counter + loop.index0 }}:
+                    </h4>
                     <p>{{ survey.questions[key].text }}</p>
                     {% if value['type'] == 'mult' %}
                         <div class="checkbox">
@@ -21,7 +29,7 @@
                         <div class="range">
 
                             <input type="range" min="{{ value.min }}" max="{{ value.max }}" step="{{ value.step }}"
-                                   value="{{ value.min }}, {{ value.max }}" name="{{ key }}" required> (from 1 to 10)
+                                   value="{{ value.min }}, {{ value.max }}" name="{{ key }}" required> (1 ... 10)
                         </div>
                     {% elif value['type'] == 'open' %}
                         <div class="text_field">

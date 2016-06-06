@@ -25,7 +25,7 @@ def write_answer(qs):
 def hello():
     survey = Survey("app/data/questions.json", "en")
     if request.method == 'GET':
-        return render_template('index.html', survey=survey)
+        return render_template('index.html', survey=survey, lang="en")
     elif request.method == 'POST':
         qs = getData(survey)
         write_answer(qs)
@@ -36,7 +36,7 @@ def hello():
 def helloRu():
     survey = Survey("app/data/questions.json", "ru")
     if request.method == 'GET':
-        return render_template('index.html', survey=survey)
+        return render_template('index.html', survey=survey, lang="ru")
     elif request.method == 'POST':
         qs = getData(survey)
         write_answer(qs)
