@@ -18,8 +18,13 @@ def write_answer(qs):
     This method writes the incoming data structure into json with a random hash number
     :param qs: structure od answers for raw files
     """
-    hash = randrange(2197000)
-    with open('app//data//raw//result_' + str(hash) + '.json', 'w') as fp:
+    hash_ = randrange(2197000)
+    session['answer'] = str(hash_)
+    filename = 'questionary_' + str(hash_) + '.json'
+    with open(os.path.join('app',
+                           'data',
+                           'raw',
+                           filename), 'w') as fp:
         json.dump(qs, fp, sort_keys=True, indent=4)
 
 
@@ -29,25 +34,18 @@ def hello():
     if request.method == 'GET':
         return render_template('index.html', survey=survey)
     elif request.method == 'POST':
-        qs = [list(), list(), list(), list(), list()]
-        i = len(qs) - 1
-        for key, item in survey.questions.items():
-            qs[i].append(key)
-            if item.type == 'mult':
-                for var in item.variants:
-                    qs[i].append(request.form.get(var))
-            qs[i].append(request.form.get(key))
-            i -= 1
-
+        # qs = [list(), list(), list(), list(), list()]
+        # i = len(qs) - 1
+        # for key, item in survey.questions.items():
+        #     qs[i].append(key)
+        #     if item.type == 'mult':
+        #         for var in item.variants:
+        #             qs[i].append(request.form.get(var))
+        #     qs[i].append(request.form.get(key))
+        #     i -= 1
+        qs = request.form['data']
         write_answer(qs)
         return render_template('thankyou.html', results=qs)
-
-
-@app.route('/results')
-def chart():
-    labels = ['First', 'second', 'third variant', "and here some other"]
-    values = [1, 9, 3, 2]
-    return render_template('results.html', values=values, labels=labels)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -82,3 +80,28 @@ def get_statistics():
         data.append(chart_labels)
         data.append(chart_values)
         return render_template('statistics.html', data=data)
+
+
+@app.route('/results/<int:uid>')
+def get_results(uid):
+    data = dict()
+    msg = ''
+    result_path = 'questionary_' + str(uid) + '.json'
+    if not os.path.exists(result_path):
+        msg = "Results were not found, please check results address."
+    else:
+        msg = "Survey {0}".format(str(uid))
+        data = json.load(open(os.path.join('app',
+                                           'data',
+                                           'raw',
+                                           result_path)))
+    return render_template('results.html', data=data, msg=msg)
+
+
+@app.route('/results')
+def result():
+    if 'answer' in session:
+        return redirect('/results/' + str(session['answer']))
+    else:
+        msg = "To see the results, please complete the survey"
+        return render_template('results.html', data=dict(), msg=msg)

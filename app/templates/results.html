@@ -1,3 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
+    <div class="jumbotron">
+        <h1>Survey results!</h1>
+        <p class="lead"></p>
+        <p><a class="btn btn-lg btn-success" href="/" role="button">Attend a new one</a>
+        </p>
+    </div>
+
+    <div class="row marketing">
+        <div>
+            <p>{{ msg }}</p>
+            <p>{{ data }}</p>
+        </div>
+    </div>
 {% endblock %}
