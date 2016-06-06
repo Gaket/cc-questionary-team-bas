@@ -1,5 +1,3 @@
-import json
-
 from app import app
 from app.main.survey import Survey
 from flask import render_template
@@ -34,16 +32,21 @@ def hello():
     if request.method == 'GET':
         return render_template('index.html', survey=survey)
     elif request.method == 'POST':
-        # qs = [list(), list(), list(), list(), list()]
-        # i = len(qs) - 1
-        # for key, item in survey.questions.items():
-        #     qs[i].append(key)
-        #     if item.type == 'mult':
-        #         for var in item.variants:
-        #             qs[i].append(request.form.get(var))
-        #     qs[i].append(request.form.get(key))
-        #     i -= 1
-        qs = request.form['data']
+        qs = dict()
+        answers = list()
+        for key, item in survey.questions.items():
+            answer = dict()
+            answer[key] = key
+            if 'answer' not in answer:
+                answer['answer'] = list()
+            if item.type == 'mult':
+                for var in item.variants:
+                    answer['answer'].append(request.form.get(var))
+            else:
+                answer['answer'].append(request.form.get(key))
+            answers.append(answer)
+        qs['answers'] = answers
+        # qs = request.form['data']
         write_answer(qs)
         return render_template('thankyou.html', results=qs)
 
@@ -99,6 +102,7 @@ def get_results(uid):
 
 
 @app.route('/results')
+@app.route('/results/')
 def result():
     if 'answer' in session:
         return redirect('/results/' + str(session['answer']))
