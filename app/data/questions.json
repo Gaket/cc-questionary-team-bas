@@ -1,5 +1,5 @@
 {
-  "about DB": {
+  "1": {
     "type": "mult",
     "en": {
       "text": "What type of database are you planning to connect the system?",
@@ -22,7 +22,7 @@
       ]
     }
   },
-  "about system": {
+  "2": {
     "type": "num",
     "en": {
       "text": "Please assign importance of data reliability for the system:",
@@ -41,7 +41,7 @@
       ]
     }
   },
-  "about data": {
+  "3": {
     "type": "num",
     "en": {
       "text": "Please assign importance of system ability to process data in real-time:",
@@ -60,7 +60,7 @@
       ]
     }
   },
-  "about UI": {
+  "4": {
     "type": "open",
     "en": {
       "text": "What are the most important aspects for UI of the system?",
@@ -71,7 +71,7 @@
       "variants": []
     }
   },
-  "about Customer": {
+  "5": {
     "type": "open",
     "en": {
       "text": "Who is the main customers of the system?",

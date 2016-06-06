@@ -11,6 +11,7 @@ import os
 
 from random import randrange
 
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 @app.route('/main/<lang>', methods=['GET', 'POST'])
@@ -21,19 +22,23 @@ def hello(lang="en"):
     elif request.method == 'POST':
         qs = getData(survey)
         write_answer(qs)
+        write_aggregated(qs)
         return render_template('thankyou.html', results=qs, lang=lang)
 
+
 def getData(survey):
-    qs = [list(), list(), list(), list(), list()]
-    i = len(qs) - 1
+    qs = []
     for key, item in survey.questions.items():
-        qs[i].append(key)
+        answer = []
         if item.type == 'mult':
             for var in item.variants:
-                qs[i].append(request.form.get(var))
-        qs[i].append(request.form.get(key))
-        i -= 1
+                if (request.form.get(var) is not None):
+                    answer.append(request.form.get(var))
+        else:
+            answer.append(request.form.get(key))
+        qs.append({"question_id": key, "answer": answer})
     return qs
+
 
 def write_answer(qs):
     """
@@ -43,6 +48,17 @@ def write_answer(qs):
     hash = randrange(2197000)
     with open('app//data//raw//result_' + str(hash) + '.json', 'w') as fp:
         json.dump(qs, fp, sort_keys=True, indent=4)
+
+
+def write_aggregated(qs):
+    # with open('app//data//raw//result_' + str(hash) + '.json', 'w') as fp:
+    #     for element in qs:
+    #         for key, value in element:
+
+    pass
+
+
+
 
 @app.route('/results')
 def chart():
@@ -58,22 +74,22 @@ def check_login(lang="en"):
         return render_template('login.html', message=msg, lang=lang)
     elif request.method.lower() == 'post':
         if request.form['user'] == 'admin' and \
-                request.form['password'] == 'secret':
+                        request.form['password'] == 'secret':
             session['admin'] = True
             return redirect(url_for('get_statistics'))
         else:
             return render_template('login.html', message="Wrong user or password", lang=lang)
 
 
-@app.route('/statistics')
+@app.route('/statistics/<lang>')
 def get_statistics(lang="en"):
     if 'admin' not in session:
         return redirect(url_for('check_login'))
     else:
-        questions = getQuestions(QUESTIONS_ADDR, "en")
+        questions = getQuestions(QUESTIONS_ADDR, lang)
         data = json.load(open(os.path.join('app',
-                                      'data',
-                                      'aggregated_data.json')))
+                                           'data',
+                                           'aggregated_data.json')))
         chart_labels = list()
         chart_values = list()
         for ans in data:
