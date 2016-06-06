@@ -1,3 +1,4 @@
+import codecs
 import json
 import time
 from app.model.question import NumericQuestion
@@ -5,19 +6,18 @@ from app.model.question import MultipleAnswersQuestion
 from app.model.question import OpenQuestion
 
 class Survey:
-    def __init__(self, questionsAddr):
+    def __init__(self, questionsAddr, lang):
         self.hash = str(int(time.time())).__hash__()
-        self.questions = getQuestions(questionsAddr)
+        self.questions = getQuestions(questionsAddr, lang)
 
-def getQuestions(questionsAddr):
+def getQuestions(questionsAddr, lang):
     # Parse JSON to get data and return list of questions (childs of Question)
     with open(questionsAddr) as questions_file:
-        questions = json.load(questions_file)
-        questions_list = []
+        questions = json.load(codecs.open(questionsAddr, 'r', 'utf-8-sig'))
         q = dict()
         for key in questions:
-            text = questions[key]["text"]
-            variants = questions[key]["variants"]
+            text = questions[key][lang]["text"]
+            variants = questions[key][lang]["variants"]
             if questions[key]["type"] == "num":
                 q[key] = NumericQuestion(text, variants)
             elif questions[key]["type"] == "mult":
