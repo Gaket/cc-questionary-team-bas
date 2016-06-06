@@ -23,22 +23,37 @@ def write_answer(qs):
 
 @app.route('/', methods=['GET', 'POST'])
 def hello():
-    survey = Survey("app/data/questions.json")
+    survey = Survey("app/data/questions.json", "en")
     if request.method == 'GET':
         return render_template('index.html', survey=survey)
     elif request.method == 'POST':
-        qs = [list(), list(), list(), list(), list()]
-        i = len(qs) - 1
-        for key, item in survey.questions.items():
-            qs[i].append(key)
-            if item.type == 'mult':
-                for var in item.variants:
-                    qs[i].append(request.form.get(var))
-            qs[i].append(request.form.get(key))
-            i -= 1
-
+        qs = getData(survey)
         write_answer(qs)
         return render_template('thankyou.html', results=qs)
+
+
+@app.route('/ru', methods=['GET', 'POST'])
+def helloRu():
+    survey = Survey("app/data/questions.json", "ru")
+    if request.method == 'GET':
+        return render_template('index.html', survey=survey)
+    elif request.method == 'POST':
+        qs = getData(survey)
+        write_answer(qs)
+        return render_template('thankyou.html', results=qs)
+
+def getData(survey):
+    qs = [list(), list(), list(), list(), list()]
+    i = len(qs) - 1
+    for key, item in survey.questions.items():
+        qs[i].append(key)
+        if item.type == 'mult':
+            for var in item.variants:
+                qs[i].append(request.form.get(var))
+        qs[i].append(request.form.get(key))
+        i -= 1
+    return qs
+
 
 
 @app.route('/results')

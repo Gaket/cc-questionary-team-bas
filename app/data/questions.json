@@ -33,7 +33,7 @@
       ]
     },
     "ru": {
-      "text": "Please assign importance of data reliability for the system:",
+      "text": "Насколько вам важна надёжность данных?",
       "variants": [
         "1",
         "10",
@@ -52,7 +52,7 @@
       ]
     },
     "ru": {
-      "text": "Please assign importance of system ability to process data in real-time:",
+      "text": "Насколько вам важна возможность обработки данных в режиме реального времени?",
       "variants": [
         "1",
         "10",
@@ -67,7 +67,7 @@
       "variants": []
     },
     "ru": {
-      "text": "What are the most important aspects for UI of the system?",
+      "text": "Какие особенности пользовательского интерфейса для вас наиболее важны?",
       "variants": []
     }
   },
@@ -78,7 +78,7 @@
       "variants": []
     },
     "ru": {
-      "text": "Who is the main customers of the system?",
+      "text": "Кто является вашими основными заказчиками?",
       "variants": []
     }
   }
