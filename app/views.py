@@ -7,6 +7,7 @@ from flask import redirect
 from flask import url_for
 import json
 import os
+from app.main.aggregate import aggregate
 
 from random import randrange
 
@@ -32,8 +33,10 @@ def hello():
     if request.method == 'GET':
         return render_template('index.html', survey=survey, lang="en")
     elif request.method == 'POST':
-        qs = getData(survey)
+        qs = getData(survey, request=request)
         write_answer(qs)
+        aggregqted_data = aggregate(qs, get_aggregated())
+        save_aggregated(aggregqted_data)
         return render_template('thankyou.html', results=qs)
 
 
@@ -47,12 +50,29 @@ def helloRu():
         write_answer(qs)
         return render_template('thankyou.html', results=qs)
 
-def getData(survey):
+
+def get_aggregated():
+    with open(os.path.join('app',
+                           'data',
+                           'aggregated_data.json'),
+              'r') as fh:
+        return json.load(fh)
+
+
+def save_aggregated(data):
+    with open(os.path.join('app',
+                           'data',
+                           'aggregated_data.json'),
+              'w') as fh:
+        json.dump(data, fh)
+
+
+def getData(survey, request):
     qs = dict()
     answers = list()
     for key, item in survey.questions.items():
         answer = dict()
-        answer[key] = key
+        answer['key'] = key
         if 'answer' not in answer:
             answer['answer'] = list()
         if item.type == 'mult':
@@ -62,14 +82,7 @@ def getData(survey):
             answer['answer'].append(request.form.get(key))
         answers.append(answer)
     qs['answers'] = answers
-
-
-
-@app.route('/results')
-def chart():
-    labels = ['First', 'second', 'third variant', "and here some other"]
-    values = [1, 9, 3, 2]
-    return render_template('results.html', values=values, labels=labels)
+    return qs
 
 
 @app.route('/login', methods=['GET', 'POST'])
