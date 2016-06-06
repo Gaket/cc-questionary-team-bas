@@ -11,8 +11,6 @@ import os
 
 from random import randrange
 
-
-
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/main/<lang>', methods=['GET', 'POST'])
 def hello(lang="en"):
@@ -45,7 +43,6 @@ def write_answer(qs):
     with open('app//data//raw//result_' + str(hash) + '.json', 'w') as fp:
         json.dump(qs, fp, sort_keys=True, indent=4)
 
-
 @app.route('/results')
 def chart():
     labels = ['First', 'second', 'third variant', "and here some other"]
@@ -57,14 +54,14 @@ def chart():
 def check_login():
     if request.method.lower() == 'get':
         msg = "Pleas enter username and password to access survey statistics"
-        return render_template('login.html', message=msg)
+        return render_template('login.html', message=msg, lang="en")
     elif request.method.lower() == 'post':
         if request.form['user'] == 'admin' and \
                 request.form['password'] == 'secret':
             session['admin'] = True
             return redirect(url_for('get_statistics'))
         else:
-            return render_template('login.html', message="Wrong user or password")
+            return render_template('login.html', message="Wrong user or password", lang="en")
 
 
 @app.route('/statistics')
@@ -72,7 +69,7 @@ def get_statistics():
     if 'admin' not in session:
         return redirect(url_for('check_login'))
     else:
-        questions = getQuestions(QUESTIONS_ADDR, lang)
+        questions = getQuestions(QUESTIONS_ADDR, "en")
         data = json.load(open(os.path.join('app',
                                       'data',
                                       'aggregated_data.json')))
@@ -85,4 +82,4 @@ def get_statistics():
                     chart_values.append(float(val))
         data.append(chart_labels)
         data.append(chart_values)
-        return render_template('statistics.html', data=data)
+        return render_template('statistics.html', data=data, lang="en")
