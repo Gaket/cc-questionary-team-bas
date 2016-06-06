@@ -1,39 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Cloud computing BAS team</title>
-
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-</head>
-
-<body>
-
-<div class="container">
-    <div class="header">
-        <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="#">Home</a>
-                </li>
-                <li role="presentation"><a href="#">Log In</a>
-            </ul>
-        </nav>
-        <h3 class="text-muted">CC Questionnaire</h3>
-    </div>
-
+{% extends "layout.html" %}
+{% block content %}
     <div class="jumbotron">
         <h1>Welcome!</h1>
         <p class="lead"></p>
-        <p><a class="btn btn-lg btn-success" href="results" role="button">Check results here :)</a>
+        <p><a class="btn btn-lg btn-success" href="/statistics" role="button">Check results here :)</a>
         </p>
     </div>
 
     <div class="row marketing">
         <div>
-            <script src="../static/jquery.min.js"></script>
             <form action="." method="post" name="vote">
                 {% for key, value in survey.questions.items() %}
                     <h4>Question {{ key }}</h4>
@@ -49,11 +24,9 @@
                         </div>
                     {% elif value['type'] == 'num' %}
                         <div class="range">
-                            {#                    {% for ans in range(value.min, value.max, value.step) %}#}
 
                             <input type="range" min="{{ value.min }}" max="{{ value.max }}" step="{{ value.step }}"
                                    value="{{ value.min }}, {{ value.max }}" name="{{ key }}" required> (from 1 to 10)
-                            {#                    {% endfor %}#}
                         </div>
                     {% elif value['type'] == 'open' %}
                         <div class="text_field">
@@ -65,16 +38,5 @@
                 <input type="submit">
             </form>
         </div>
-        {#        <div>#}
-        {#            <a class="btn btn-lg btn-success" href="/results/{{ survey.hash }}" role="button">Submit</a>#}
-        {#        </div>#}
     </div>
-
-    <footer class="footer">
-        <p>&copy; BAS team 2016</p>
-    </footer>
-
-</div>
-</body>
-
-</html>
+{% endblock %}
