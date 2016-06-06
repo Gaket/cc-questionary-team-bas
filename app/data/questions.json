@@ -1,14 +1,27 @@
 {
   "about DB": {
-    "type": "mult",
-    "text": "What type of database are you planning to connect the system?",
-    "variants": [
-      "MySQL",
-      "PostgreSQL",
-      "MSSQL",
-      "Hadoop",
-      "Oracle"
-    ]
+    "en": {
+      "type": "mult",
+      "text": "What type of database are you planning to connect the system?",
+      "variants": [
+        "MySQL",
+        "PostgreSQL",
+        "MSSQL",
+        "Hadoop",
+        "Oracle"
+      ]
+    },
+    "ru": {
+      "type": "mult",
+      "text": "What type of database are you planning to connect the system?",
+      "variants": [
+        "MySQL",
+        "PostgreSQL",
+        "MSSQL",
+        "Hadoop",
+        "Oracle"
+      ]
+    }
   },
   "about system": {
     "type": "num",

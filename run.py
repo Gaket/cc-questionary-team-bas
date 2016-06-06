@@ -1,3 +1,5 @@
 from app import app
 app.secret_key = 'PWN3D'
-app.run(debug=True)
+
+if __name__ == '__main__':
+    app.run(debug=True)
