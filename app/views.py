@@ -1,5 +1,6 @@
 from app import app
-from app.main.survey import Survey
+from app.main.const import QUESTIONS_ADDR
+from app.main.survey import Survey, getQuestions
 from flask import render_template
 from flask import request
 from flask import session
@@ -11,36 +12,17 @@ import os
 from random import randrange
 
 
-def write_answer(qs):
-    """
-    This method writes the incoming data structure into json with a random hash number
-    :param qs: structure od answers for raw files
-    """
-    hash = randrange(2197000)
-    with open('app//data//raw//result_' + str(hash) + '.json', 'w') as fp:
-        json.dump(qs, fp, sort_keys=True, indent=4)
-
 
 @app.route('/', methods=['GET', 'POST'])
-def hello():
-    survey = Survey("app/data/questions.json", "en")
+@app.route('/main/<lang>', methods=['GET', 'POST'])
+def hello(lang="en"):
+    survey = Survey("app/data/questions.json", lang)
     if request.method == 'GET':
-        return render_template('index.html', survey=survey, lang="en")
+        return render_template('index.html', survey=survey, lang=lang)
     elif request.method == 'POST':
         qs = getData(survey)
         write_answer(qs)
-        return render_template('thankyou.html', results=qs, lang="en")
-
-
-@app.route('/ru', methods=['GET', 'POST'])
-def helloRu():
-    survey = Survey("app/data/questions.json", "ru")
-    if request.method == 'GET':
-        return render_template('index.html', survey=survey, lang="ru")
-    elif request.method == 'POST':
-        qs = getData(survey)
-        write_answer(qs)
-        return render_template('thankyou.html', results=qs, lang="ru")
+        return render_template('thankyou.html', results=qs, lang=lang)
 
 def getData(survey):
     qs = [list(), list(), list(), list(), list()]
@@ -54,6 +36,14 @@ def getData(survey):
         i -= 1
     return qs
 
+def write_answer(qs):
+    """
+    This method writes the incoming data structure into json with a random hash number
+    :param qs: structure od answers for raw files
+    """
+    hash = randrange(2197000)
+    with open('app//data//raw//result_' + str(hash) + '.json', 'w') as fp:
+        json.dump(qs, fp, sort_keys=True, indent=4)
 
 
 @app.route('/results')
@@ -82,6 +72,7 @@ def get_statistics():
     if 'admin' not in session:
         return redirect(url_for('check_login'))
     else:
+        questions = getQuestions(QUESTIONS_ADDR, lang)
         data = json.load(open(os.path.join('app',
                                       'data',
                                       'aggregated_data.json')))
