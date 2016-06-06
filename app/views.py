@@ -1,7 +1,21 @@
+import json
+
 from app import app
 from app.main.survey import Survey
 from flask import render_template
 from flask import request
+from random import randrange
+
+
+def write_answer(qs):
+    """
+    This method writes the incoming data structure into json with a random hash number
+    :param qs: structure od answers for raw files
+    """
+    hash = randrange(2197000)
+    with open('app//data//raw//result_' + str(hash) + '.json', 'w') as fp:
+        json.dump(qs, fp, sort_keys=True, indent=4)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def hello():
@@ -9,13 +23,18 @@ def hello():
     if request.method == 'GET':
         return render_template('index.html', survey=survey)
     elif request.method == 'POST':
-        res = list()
+        qs = [list(), list(), list(), list(), list()]
+        i = len(qs) - 1
         for key, item in survey.questions.items():
+            qs[i].append(key)
             if item.type == 'mult':
                 for var in item.variants:
-                    res.append(request.form.get(var))
-            res.append(request.form.get(key))
-        return render_template('results.html', results=res)
+                    qs[i].append(request.form.get(var))
+            qs[i].append(request.form.get(key))
+            i -= 1
+            
+        write_answer(qs)
+        return render_template('results.html', results=qs)
 
 # @app.route()
 # def process_question():
