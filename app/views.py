@@ -29,7 +29,7 @@ def hello():
     elif request.method == 'POST':
         qs = getData(survey)
         write_answer(qs)
-        return render_template('thankyou.html', results=qs)
+        return render_template('thankyou.html', results=qs, lang="en")
 
 
 @app.route('/ru', methods=['GET', 'POST'])
@@ -40,7 +40,7 @@ def helloRu():
     elif request.method == 'POST':
         qs = getData(survey)
         write_answer(qs)
-        return render_template('thankyou.html', results=qs)
+        return render_template('thankyou.html', results=qs, lang="ru")
 
 def getData(survey):
     qs = [list(), list(), list(), list(), list()]

@@ -19,11 +19,26 @@
     <div class="header">
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="/">Home</a>
+                <li role="presentation" class="active">
+                    <a href="/">
+                        {% if lang == 'en' %} Home
+                        {% elif lang == 'ru' %} К опросу
+                        {% endif %}
+                    </a>
                 </li>
-                <li role="presentation"><a class="btn btn-warning" href="/statistics">Results</a>
+                <li role="presentation">
+                    <a class="btn btn-warning" href="/statistics">
+                        {% if lang == 'en' %} Results
+                        {% elif lang == 'ru' %} Результаты
+                        {% endif %}
+                    </a>
                 </li>
-                <li role="presentation"><a href="/login">Log In</a>
+                <li role="presentation">
+                    <a href="/login">
+                        {% if lang == 'en' %}  Log In
+                        {% elif lang == 'ru' %} Войти
+                        {% endif %}
+                </a>
             </ul>
         </nav>
         <h3 class="text-muted">CC Questionnaire</h3>
