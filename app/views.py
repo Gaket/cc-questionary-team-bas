@@ -59,7 +59,7 @@ def get_statistics():
         chart_labels = list()
         chart_values = list()
         for key, item in data.items():
-            if key == '1':
+            if questions[key].type == "mult":
                 res[key] = dict()
                 chart_labels = []
                 chart_values = []
@@ -69,7 +69,7 @@ def get_statistics():
                 for val in item['answer']:
                     chart_values.append(float(val))
                 res[key]['vals'] = chart_values
-            elif key in ['2', '3']:
+            elif questions[key].type == "num":
                 res[key] = dict()
                 chart_labels = []
                 chart_values = []
