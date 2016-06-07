@@ -1,11 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
     <div>
+        {% set quest_num = 1 -%}
         {% for key, item in res.items() %}
         <p>
         <h3>{% if lang == 'en' %} Question
             {% elif lang == 'ru' %} Вопрос
-            {% endif %}:
+            {% endif %} {{ quest_num + loop.index0 }}:
         </h3>
                 {{ quest[key].text }} {#  : {{ item['answer'] }}#}
             </p>
