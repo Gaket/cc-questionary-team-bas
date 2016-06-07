@@ -77,9 +77,11 @@ def get_statistics():
                 sum = 0
                 [chart_labels.append(x) for x in range(1, 11)]
                 res[key]['labels'] = chart_labels
+                cnt = 0
                 for val in item['answer']:
                     chart_values.append(float(val))
-                    sum = sum + float(val)
+                    sum += float(val) * cnt
+                    cnt += 1
                 res[key]['vals'] = chart_values
                 res[key]['avg'] = sum / len(chart_values)
             else:
@@ -87,7 +89,7 @@ def get_statistics():
                 ans = list()
                 for val in item['answer']:
                     ans.append(val)
-                res[key] = ans
+                res[key]['open'] = ans
         return render_template('statistics.html', res=res, lang=session['lang'], quest=questions)
 
 
