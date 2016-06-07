@@ -1,5 +1,6 @@
 import codecs
 import json
+import os
 
 from app.main.const import QUESTIONS_ADDR, AGGREGATED_ADDR
 from flask import session
@@ -19,6 +20,16 @@ def getData(survey):
             answer.append(request.form.get(key))
         qs.append({"question_id": key, "answer": answer})
     return qs
+
+
+def getRawData():
+    res = dict()
+    for file in os.listdir('app//data//raw//'):
+        if 'result' in file:
+            key = file[:-5].split('_')[1]
+            with open('app//data//raw//'+file, 'r') as fp:
+                res[key] = json.load(fp)
+    return res
 
 
 def write_answer(qs):

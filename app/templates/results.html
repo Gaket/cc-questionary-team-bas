@@ -1,25 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
 
-    <h1>{% if lang == 'en' %} Result
-    {% elif lang == 'ru' %} Результат
-    {% endif %}.
+    <h1>{% if lang == 'en' %} Results
+    {% elif lang == 'ru' %} Результаты
+    {% endif %}
     </h1>
 
     <div class="row marketing">
         <div>
-{#            {% set counter = 1 -%}#}
-            {% for key, value in survey.questions.items() %}
-            <h4>{% if lang == 'en' %} Question
+            {% for key, value in res.items() %}
+                <h4>
+                FILE number {{ key }}
+                </h4>
+                {% for dic in value %}
+            <h5>{% if lang == 'en' %} Question
             {% elif lang == 'ru' %} Вопрос
             {% endif %}
-                {{ key }}
-                {#                        {{ counter + loop.index0 }}:#}
-            </h4>
-            <p>{{ survey.answers[key].text }}
-                <br>
-                survey.answers[key].answer
+
+                {{ dic['question_id'] }}
+            :
+            </h5>
+            <p> {%  for ans in dic['answer'] %}
+                {{ ans }}<br>
+                {%  endfor %}
             </p>
+                {% endfor %}
+                <hr>
+        {% endfor %}
         </div>
     </div>
 

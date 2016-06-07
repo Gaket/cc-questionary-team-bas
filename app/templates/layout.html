@@ -34,7 +34,15 @@
                 <li role="presentation">
                     <a class="btn btn-warning" href="/statistics">
                         <!--Results-->
-                        {% if lang == 'en' %} Results
+                        {% if lang == 'en' %} Statistics
+                        {% elif lang == 'ru' %} Статистика
+                        {% endif %}
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a class="btn btn-warning" href="/results">
+                        <!--Results-->
+                        {% if lang == 'en' %} Raw results
                         {% elif lang == 'ru' %} Результаты
                         {% endif %}
                     </a>

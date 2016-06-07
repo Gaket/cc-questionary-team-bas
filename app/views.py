@@ -2,7 +2,7 @@ import codecs
 
 from app import app
 from app.main.const import QUESTIONS_ADDR, QUESTIONS_TO_STATISTICS
-from app.main.data_processor import getData, write_answer, write_aggregated
+from app.main.data_processor import getRawData, getData, write_answer, write_aggregated
 from app.main.survey import Survey, getQuestions
 from flask import render_template
 from flask import request
@@ -94,3 +94,9 @@ def get_statistics():
 def set_lang():
     session['lang'] = request.form.get('lang')
     return redirect('/')
+
+@app.route('/results')
+@app.route('/results/')
+def show_results():
+    res = getRawData()
+    return render_template('results.html', res=res, lang=session['lang'])

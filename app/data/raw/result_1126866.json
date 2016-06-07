@@ -1,32 +1,34 @@
 [
     {
         "answer": [
-            "6"
+            "2"
         ],
         "question_id": "3"
     },
     {
         "answer": [
-            "6"
-        ],
-        "question_id": "2"
-    },
-    {
-        "answer": [
-            "twerg"
+            "Alfa"
         ],
         "question_id": "5"
     },
     {
         "answer": [
-            "wer"
+            "8"
         ],
-        "question_id": "4"
+        "question_id": "2"
     },
     {
         "answer": [
-            "MySQL"
+            "PostgreSQL",
+            "Hadoop",
+            "Oracle"
         ],
         "question_id": "1"
+    },
+    {
+        "answer": [
+            "UI"
+        ],
+        "question_id": "4"
     }
 ]
