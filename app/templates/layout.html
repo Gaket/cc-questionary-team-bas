@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Survey</title>
+    <title>
+        {% if lang == 'en' %} Survey
+        {% elif lang == 'ru' %} Опрос
+        {% endif %}
+    </title>
     <script type=text/javascript src="{{
       url_for('static', filename='jquery.js') }}"></script>
     <script type=text/javascript src="{{
@@ -11,10 +15,8 @@
       url_for('static', filename='Chart.min.js') }}"></script>
     <script type=text/javascript src="{{
             url_for('static', filename='jquery.min.js') }}"></script>
-    <link rel="stylesheet" href="{{
-            url_for('static', filename="bootstrap.min.css") }}">
-    <link rel="stylesheet" href="{{
-            url_for('static', filename="jumbotron-narrow.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="jumbotron-narrow.css") }}">
 </head>
 <body>
 <div class="container">
@@ -40,10 +42,10 @@
                 <li role="presentation">
                     <a href="/login">
                         <!--Login-->
-                        {% if lang == 'en' %}  Log In
+                        {% if lang == 'en' %} Log In
                         {% elif lang == 'ru' %} Войти
                         {% endif %}
-                </a>
+                    </a>
                 <li role="presentation">
                     <form action="/lang" method="post">
                         <input type="hidden" name='lang' value="en">
@@ -60,7 +62,7 @@
         <h3 class="text-muted">CC Questionnaire</h3>
     </div>
     {% block content %}{% endblock %}
-<footer class="footer">
+    <footer class="footer">
         <p>&copy; BAS team 2016</p>
     </footer>
 </div>

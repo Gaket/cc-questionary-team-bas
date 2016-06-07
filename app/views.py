@@ -24,10 +24,10 @@ def hello():
     if request.method == 'GET':
         return render_template('index.html', survey=survey, lang=session['lang'])
     elif request.method == 'POST':
-        qs = getData(survey)
-        write_answer(qs)
-        write_aggregated(qs)
-        return render_template('thankyou.html', results=qs, lang=session['lang'])
+        answers = getData(survey)
+        write_answer(answers)
+        write_aggregated(answers)
+        return render_template('thankyou.html', results=answers, lang=session['lang'])
 
 
 def getData(survey):
@@ -100,6 +100,8 @@ def write_aggregated(qs):
 
 @app.route('/login', methods=['GET', 'POST'])
 def check_login():
+    if 'lang' not in session:
+        session['lang'] = 'en'
     if request.method.lower() == 'get':
         msg = "Pleas enter username and password to access survey statistics"
         return render_template('login.html', message=msg, lang=session['lang'])
@@ -112,10 +114,12 @@ def check_login():
             return render_template('login.html', message="Wrong user or password", lang=session['lang'])
 
 
-@app.route('/statistics/<lang>')
-def get_statistics(lang="en"):
+@app.route('/statistics/')
+def get_statistics():
     if 'admin' not in session:
         return redirect(url_for('check_login'))
+    if 'lang' not in session:
+        session['lang'] = 'en'
     else:
         questions = getQuestions(QUESTIONS_ADDR, session['lang'])
         data = json.load(open(os.path.join('app',
