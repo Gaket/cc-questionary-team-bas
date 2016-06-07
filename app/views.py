@@ -114,7 +114,8 @@ def check_login():
             return render_template('login.html', message="Wrong user or password", lang=session['lang'])
 
 
-@app.route('/statistics/')
+@app.route('/statistics')
+@app.route('/statistics')
 def get_statistics():
     if 'admin' not in session:
         return redirect(url_for('check_login'))
