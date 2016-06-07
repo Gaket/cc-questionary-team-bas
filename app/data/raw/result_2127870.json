@@ -1,0 +1,33 @@
+[
+    {
+        "answer": [
+            "6"
+        ],
+        "question_id": "2"
+    },
+    {
+        "answer": [
+            "\u044b\u0438\u0430\u0432"
+        ],
+        "question_id": "4"
+    },
+    {
+        "answer": [
+            "6"
+        ],
+        "question_id": "3"
+    },
+    {
+        "answer": [
+            "PostgreSQL",
+            "MSSQL"
+        ],
+        "question_id": "1"
+    },
+    {
+        "answer": [
+            "\u0444\u044b"
+        ],
+        "question_id": "5"
+    }
+]

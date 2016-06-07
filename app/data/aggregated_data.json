@@ -1,6 +1,5 @@
-[
-  {
-    "question_id": 1,
+{
+  "1": {
     "answer": [
       1,
       2,
@@ -8,34 +7,44 @@
       4
     ]
   },
-  {
-    "question_id": 2,
+  "2": {
     "answer": [
-      3.5
+      1,
+      2,
+      0,
+      4,
+      1,
+      2,
+      0,
+      4,
+      2,
+      1
     ]
   },
-  {
-    "question_id": 3,
-    "answer": {
-      "MySQL":1,
-      "PostgreSQL":4,
-      "MSSQL":0,
-      "Hadoop":8,
-      "Oracle":8
-    }
+  "3": {
+    "answer": [
+      3,
+      0,
+      0,
+      4,
+      1,
+      2,
+      0,
+      4,
+      2,
+      1
+    ]
   },
-  {
-    "question_id": 4,
+  "4": {
     "answer": [
       "Some text",
       "Another opinion"
     ]
   },
-  {
-    "question_id": 5,
+  "5": {
     "answer": [
-      "LOL",
-      "Nobody"
+      "Some text",
+      "Another opinion"
     ]
   }
-]
+}

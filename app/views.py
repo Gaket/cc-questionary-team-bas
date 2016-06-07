@@ -1,5 +1,8 @@
+import codecs
+
 from app import app
 from app.main.const import QUESTIONS_ADDR
+from app.main.const import AGGREGATED_ADDR
 from app.main.survey import Survey, getQuestions
 from flask import render_template
 from flask import request
@@ -54,9 +57,17 @@ def write_aggregated(qs):
     # with open('app//data//raw//result_' + str(hash) + '.json', 'w') as fp:
     #     for element in qs:
     #         for key, value in element:
+    aggregated = json.load(codecs.open(AGGREGATED_ADDR, 'r', 'utf-8-sig'))
+    questions = json.load(codecs.open(QUESTIONS_ADDR, 'r', 'utf-8-sig'))
+    for element in qs:
+        id = element["question_id"]
+        # Ответ к id
+        type = questions[id]["type"]
+        # Проверить три типа вопросов, добавить ответы для каждого
+        aggregated[id] = aggregated[id]["answer"].append(element["answer"])
 
-    pass
-
+    # записать агрегированные данные
+    #json.dump(qs, fp, sort_keys=True, indent=4)
 
 @app.route('/results')
 def chart():
