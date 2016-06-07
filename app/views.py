@@ -125,15 +125,17 @@ def get_statistics():
         data = json.load(open(os.path.join('app',
                                            'data',
                                            'aggregated_data.json')))
+        res = dict()
         chart_labels = list()
         chart_values = list()
-        for ans in data:
-            if ans['key'] == 'about DB':
-                for elem, val in ans['answer'].items():
-                    chart_labels.append(elem)
+        for key, item in data.items():
+            if key == '1':
+                for name in questions[key].variants:
+                    chart_labels.append(name)
+                res[key] = chart_labels
+                for val in item['answer']:
                     chart_values.append(float(val))
-        data.append(chart_labels)
-        data.append(chart_values)
+                res[key] = chart_values
         return render_template('statistics.html', data=data, lang=session['lang'])
 
 

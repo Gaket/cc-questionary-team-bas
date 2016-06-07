@@ -1,26 +1,26 @@
 {% extends "layout.html" %}
 {% block content %}
     <div>
-    {%  for res in data[:-2] %}
-        {% if res['key'] != 'about DB' %}
+    {%  for key, item in data.items() %}
     <p>
-        {{ res['key'] }} : {{ res['answer'] }}
+        {{ quest[key].text }} : {{ item['answer'] }}
     </p>
-        {% endif %}
     {% endfor %}
     </div>
     <canvas id="chart" width="800" height="400"></canvas>
 
 <script> // bar chart data
+{% for key, value in data.items() %}
 var barData = {
-    labels: [{% for lbl in data[-2] %}"{{ lbl }}", {% endfor %}],
+    labels: [{% for lbl in quest[key].variants %}"{{ lbl }}", {% endfor %}],
     datasets: [{
         fillColor: "rgba(151,187,205,0.2)",
         strokeColor: "rgba(151,187,205,1)",
         pointColor: "rgba(151,187,205,1)",
-        data : [{% for val in data[-1] %}"{{ val }}", {% endfor %}]
+        data : [{% for val in data[key] %}"{{ val }}", {% endfor %}]
     }]
    }
+{% endfor %}
 // get bar chart canvas
 var mychart = document.getElementById("chart").getContext("2d");
 steps = 10
