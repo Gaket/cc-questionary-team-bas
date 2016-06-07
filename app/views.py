@@ -115,7 +115,6 @@ def check_login():
 
 
 @app.route('/statistics')
-@app.route('/statistics')
 def get_statistics():
     if 'admin' not in session:
         return redirect(url_for('check_login'))
