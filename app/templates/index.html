@@ -33,8 +33,7 @@
                         </div>
                     {% elif value['type'] == 'open' %}
                         <div class="text_field">
-                            <textarea spellcheck="true" rows="4" cols="80" name="{{ key }}" required>
-                            </textarea>
+                            <textarea spellcheck="true" rows="4" cols="80" name="{{ key }}" spellcheck="true" required></textarea>
                         </div>
                     {% endif %}
                 {% endfor %}
