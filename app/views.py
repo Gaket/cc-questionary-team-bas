@@ -86,10 +86,7 @@ def get_statistics():
                 res[key]['avg'] = sum / len(chart_values)
             else:
                 res[key] = dict()
-                ans = list()
-                for val in item['answer']:
-                    ans.append(val)
-                res[key]['open'] = ans
+                res[key]['open'] = item['answer']
         return render_template('statistics.html', res=res, lang=session['lang'], quest=questions)
 
 
