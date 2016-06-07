@@ -17,16 +17,17 @@ from random import randrange
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
-@app.route('/main/<lang>', methods=['GET', 'POST'])
-def hello(lang="en"):
-    survey = Survey("app/data/questions.json", lang)
+def hello():
+    if 'lang' not in session:
+        session['lang'] = 'en'
+    survey = Survey("app/data/questions.json", lang=session['lang'])
     if request.method == 'GET':
-        return render_template('index.html', survey=survey, lang=lang)
+        return render_template('index.html', survey=survey, lang=session['lang'])
     elif request.method == 'POST':
         qs = getData(survey)
         write_answer(qs)
         write_aggregated(qs)
-        return render_template('thankyou.html', results=qs, lang=lang)
+        return render_template('thankyou.html', results=qs, lang=session['lang'])
 
 
 def getData(survey):
@@ -60,34 +61,55 @@ def write_aggregated(qs):
     aggregated = json.load(codecs.open(AGGREGATED_ADDR, 'r', 'utf-8-sig'))
     questions = json.load(codecs.open(QUESTIONS_ADDR, 'r', 'utf-8-sig'))
     for element in qs:
-        id = element["question_id"]
+        id_ = element["question_id"]
         # Ответ к id
-        type = questions[id]["type"]
+        type_ = questions[id_]["type"]
+        if id_ not in aggregated:
+            agg_answer = list()
+        else:
+            agg_answer = aggregated[id_]['answer']
+        print(element)
+        print(type(id_), id_)
+        print(type_)
+        answer = element['answer']
         # Проверить три типа вопросов, добавить ответы для каждого
-        aggregated[id] = aggregated[id]["answer"].append(element["answer"])
-
+        if type_ == "num":
+            # if this question was not answered before
+            if not agg_answer:
+                min_ = questions[id_][session['lang']]['variants'][0]
+                max_ = questions[id_][session['lang']]['variants'][1]
+                step_ = questions[id_][session['lang']]['variants'][2]
+                # fill list with zeroes
+                agg_answer = [0] * int((max_ - min_ + 1) / step_)
+            agg_answer[int(answer[0])-1] += 1
+        elif type_ == 'open':
+            agg_answer.append(answer[0])
+        elif type_ == 'mult':
+            # if this question was not answered before
+            if not agg_answer:
+                # fill list with zeroes
+                agg_answer = [0] * len(questions[id_][session['lang']]['variants'])
+            for ans in answer:
+                index = questions[id_][session['lang']]['variants'].index(ans)
+                agg_answer[index] += 1
+        aggregated[id_]['answer'] = agg_answer
     # записать агрегированные данные
-    #json.dump(qs, fp, sort_keys=True, indent=4)
-
-@app.route('/results')
-def chart():
-    labels = ['First', 'second', 'third variant', "and here some other"]
-    values = [1, 9, 3, 2]
-    return render_template('results.html', values=values, labels=labels)
+    with open(AGGREGATED_ADDR, 'w') as fh:
+        json.dump(aggregated, fh, sort_keys=True, indent=4)
 
 
-@app.route('/login/<lang>', methods=['GET', 'POST'])
-def check_login(lang="en"):
+@app.route('/login', methods=['GET', 'POST'])
+def check_login():
     if request.method.lower() == 'get':
         msg = "Pleas enter username and password to access survey statistics"
-        return render_template('login.html', message=msg, lang=lang)
+        return render_template('login.html', message=msg, lang=session['lang'])
     elif request.method.lower() == 'post':
         if request.form['user'] == 'admin' and \
                         request.form['password'] == 'secret':
             session['admin'] = True
             return redirect(url_for('get_statistics'))
         else:
-            return render_template('login.html', message="Wrong user or password", lang=lang)
+            return render_template('login.html', message="Wrong user or password", lang=session['lang'])
 
 
 @app.route('/statistics/<lang>')
@@ -95,7 +117,7 @@ def get_statistics(lang="en"):
     if 'admin' not in session:
         return redirect(url_for('check_login'))
     else:
-        questions = getQuestions(QUESTIONS_ADDR, lang)
+        questions = getQuestions(QUESTIONS_ADDR, session['lang'])
         data = json.load(open(os.path.join('app',
                                            'data',
                                            'aggregated_data.json')))
@@ -110,4 +132,10 @@ def get_statistics(lang="en"):
                 for val in item['answer']:
                     chart_values.append(float(val))
                 res[key] = chart_values
-        return render_template('statistics.html', data=res, lang=lang, quest=questions)
+        return render_template('statistics.html', data=data, lang=session['lang'])
+
+
+@app.route('/lang', methods=["POST"])
+def set_lang():
+    session['lang'] = request.form.get('lang')
+    return redirect('/')
