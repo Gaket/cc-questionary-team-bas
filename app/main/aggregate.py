@@ -1,5 +1,3 @@
-
-
 def aggregate(answers, aggregated):
     answers_ = answers['answers']
     for aggr_answer in aggregated:
