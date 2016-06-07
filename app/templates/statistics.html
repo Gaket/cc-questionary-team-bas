@@ -6,9 +6,9 @@
                 {{ quest[key].text }} {#  : {{ item['answer'] }}#}
             </p>
             <div>
-            <canvas id="chart_{{ key }}" width="600" height="300"></canvas>
             <script> // bar chart data
             {% if quest[key].type in ['mult', 'num'] %}
+                document.write('<canvas id="chart_{{ key }}" width="600" height="300"></canvas>')
                 var barQ = {
                     labels: [{% for lbl in res[key]['labels'] %}"{{ lbl }}", {% endfor %}],
                     datasets: [{
@@ -35,11 +35,12 @@
                     {% if quest[key].type in ['num']  %}
                         document.write("<br>Average value is ")
                         document.write({{  res[key]['avg'] }})
+                        document.write("<br>")
                     {% endif %}
                 {% elif quest[key].type in ['open'] %}
-                         document.write("<p>")
                     {% for ans in res[key]['open'] %}
-                        document.write("{{ ans }}"), {% endfor %}
+                        document.write("<br>{{ ans }}")
+                {% endfor %}
             {% endif %}
             </script>
         {% endfor %}
