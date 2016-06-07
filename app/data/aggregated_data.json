@@ -1,8 +1,8 @@
 {
     "1": {
         "answer": [
-            3,
             4,
+            5,
             4,
             3,
             3
@@ -11,7 +11,7 @@
     "2": {
         "answer": [
             1,
-            2,
+            3,
             0,
             0,
             0,
@@ -32,20 +32,22 @@
             3,
             0,
             0,
-            0,
+            1,
             1
         ]
     },
     "4": {
         "answer": [
             "Usabilty",
-            "Consistency"
+            "Consistency",
+            "Responsiveness"
         ]
     },
     "5": {
         "answer": [
             "Gazprom",
-            "Alfa"
+            "Alfa",
+            "Sberbank"
         ]
     }
 }
