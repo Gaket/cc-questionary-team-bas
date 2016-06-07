@@ -1,7 +1,7 @@
 import codecs
 
 from app import app
-from app.main.const import QUESTIONS_ADDR
+from app.main.const import QUESTIONS_ADDR, QUESTIONS_TO_STATISTICS
 from app.main.data_processor import getData, write_answer, write_aggregated
 from app.main.survey import Survey, getQuestions
 from flask import render_template
@@ -9,6 +9,7 @@ from flask import request
 from flask import session
 from flask import redirect
 from flask import url_for
+from app.main.const import QUESTIONS_TO_SHOW
 import json
 import os
 
@@ -18,7 +19,7 @@ import os
 def hello():
     if 'lang' not in session:
         session['lang'] = 'en'
-    survey = Survey("app/data/questions.json", lang=session['lang'])
+    survey = Survey("app/data/questions.json", lang=session['lang'], question_numbers = QUESTIONS_TO_SHOW)
     if request.method == 'GET':
         return render_template('index.html', survey=survey, lang=session['lang'])
     elif request.method == 'POST':
@@ -51,7 +52,7 @@ def get_statistics():
     if 'lang' not in session:
         session['lang'] = 'en'
     else:
-        questions = getQuestions(QUESTIONS_ADDR, session['lang'])
+        questions = getQuestions(QUESTIONS_ADDR, session['lang'], QUESTIONS_TO_STATISTICS)
         data = json.load(open(os.path.join('app',
                                            'data',
                                            'aggregated_data.json')))
