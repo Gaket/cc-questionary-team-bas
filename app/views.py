@@ -2,7 +2,7 @@ import codecs
 
 from app import app
 from app.main.const import QUESTIONS_ADDR
-from app.main.const import AGGREGATED_ADDR
+from app.main.data_processor import getData, write_answer, write_aggregated
 from app.main.survey import Survey, getQuestions
 from flask import render_template
 from flask import request
@@ -11,8 +11,6 @@ from flask import redirect
 from flask import url_for
 import json
 import os
-
-from random import randrange
 
 
 @app.route('/', methods=['GET', 'POST'])
