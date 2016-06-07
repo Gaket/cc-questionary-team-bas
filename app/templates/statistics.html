@@ -33,13 +33,17 @@
                     scaleShowLabels: true
                 });
                     {% if quest[key].type in ['num']  %}
+
                         document.write("<br>Average value is ")
                         document.write({{  res[key]['avg'] }})
                     {% endif %}
                 {% elif quest[key].type in ['open'] %}
+                {% set counter = 1 -%}
                          document.write("<p>")
                     {% for ans in res[key]['open'] %}
-                        document.write("{{ ans }}"), {% endfor %}
+                        document.write("{{ counter + loop.index0 }}. {{ ans }}")
+                        document.write("<br>")
+                    {% endfor %}
             {% endif %}
             </script>
         {% endfor %}
