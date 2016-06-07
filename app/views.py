@@ -143,7 +143,7 @@ def get_statistics():
                 res[key] = dict()
                 chart_labels = []
                 chart_values = []
-                [chart_labels.append(x) for x in range(10)]
+                [chart_labels.append(x) for x in range(1, 11)]
                 res[key]['labels'] = chart_labels
                 for val in item['answer']:
                     chart_values.append(float(val))
