@@ -2,7 +2,11 @@
 {% block content %}
     <div>
         {% for key, item in res.items() %}
-            <p>
+        <p>
+        <h3>{% if lang == 'en' %} Question
+            {% elif lang == 'ru' %} Вопрос
+            {% endif %} {{key}}
+        </h3>
                 {{ quest[key].text }} {#  : {{ item['answer'] }}#}
             </p>
             <div>
@@ -35,11 +39,11 @@
                     {% if quest[key].type in ['num']  %}
                         document.write("<br>Average value is ")
                         document.write({{  res[key]['avg'] }})
-                        document.write("<br>")
                     {% endif %}
                 {% elif quest[key].type in ['open'] %}
+             {% set counter = 1 -%}
                     {% for ans in res[key]['open'] %}
-                        document.write("<br>{{ ans }}")
+                        document.write("<br> {{ counter + loop.index0 }}. {{ ans }}")
                 {% endfor %}
             {% endif %}
             </script>
