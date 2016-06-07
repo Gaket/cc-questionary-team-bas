@@ -1,28 +1,28 @@
 {% extends "layout.html" %}
 {% block content %}
     <div>
-        {% for key, item in data.items() %}
+        {% for key, item in res.items() %}
             <p>
                 {{ quest[key].text }} {#  : {{ item['answer'] }}#}
             </p>
             <div>
             <canvas id="chart_{{ key }}" width="800" height="400"></canvas>
             <script> // bar chart data
-            {% if key in ['1','2','3'] %}
-                var barQ1 = {
-                    labels: [{% for lbl in data[key]['labels'] %}"{{ lbl }}", {% endfor %}],
+            {% if quest[key].type in ['mult', 'num'] %}
+                var barQ = {
+                    labels: [{% for lbl in res[key]['labels'] %}"{{ lbl }}", {% endfor %}],
                     datasets: [{
                         fillColor: "rgba(151,187,205,0.2)",
                         strokeColor: "rgba(151,187,205,1)",
                         pointColor: "rgba(151,187,205,1)",
-                        data: [{% for val in data[key]['vals'] %}"{{ val }}", {% endfor %}]
+                        data: [{% for val in res[key]['vals'] %}"{{ val }}", {% endfor %}]
                     }]
                 }
                 // get bar chart canvas
                 var mychart_{{ key }} = document.getElementById("chart_{{ key }}").getContext("2d");
                 steps = 10
                 max = 10 // draw bar chart
-                new Chart(mychart_{{ key }}).Bar(barQ1, {
+                new Chart(mychart_{{ key }}).Bar(barQ, {
                     scaleOverride: true,
                     scaleSteps: steps,
                     scaleStepWidth: Math.ceil(max / steps),
@@ -32,6 +32,13 @@
                     barShowStroke: true,
                     scaleShowLabels: true
                 });
+                    {% if quest[key].type in ['num']  %}
+                        document.write("Average value is")
+                        document.write(res[key]['avg'])
+                    {% endif %}
+                {% elif quest[key].type in ['open'] %}
+                    document.write({% for ans in res[key] %}"{{ ans }}", {% endfor %})
+
             {% endif %}
             </script>
         {% endfor %}
