@@ -33,7 +33,8 @@
                         </div>
                     {% elif value['type'] == 'open' %}
                         <div class="text_field">
-                            <input type="text" name="{{ key }}" required>
+                            <textarea rows="4" cols="80" name="{{ key }}" required>
+                            </textarea>
                         </div>
                     {% endif %}
                 {% endfor %}
