@@ -6,7 +6,7 @@
                 {{ quest[key].text }} {#  : {{ item['answer'] }}#}
             </p>
             <div>
-            <canvas id="chart_{{ key }}" width="800" height="400"></canvas>
+            <canvas id="chart_{{ key }}" width="600" height="300"></canvas>
             <script> // bar chart data
             {% if quest[key].type in ['mult', 'num'] %}
                 var barQ = {

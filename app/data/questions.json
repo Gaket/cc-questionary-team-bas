@@ -22,10 +22,10 @@
       ]
     }
   },
-  "2": {
+  "6": {
     "type": "num",
     "en": {
-      "text": "Please assign importance of data reliability for the system:",
+      "text": "What is the right number of cats?",
       "variants": [
         "1",
         "10",
@@ -33,7 +33,7 @@
       ]
     },
     "ru": {
-      "text": "Насколько вам важна надёжность данных?",
+      "text": "Сколько тут кошек?",
       "variants": [
         "1",
         "10",
@@ -71,6 +71,37 @@
       "variants": []
     }
   },
+  "7": {
+    "type": "open",
+    "en": {
+      "text": "What is the best name for a cat?",
+      "variants": []
+    },
+    "ru": {
+      "text": "Лучшее имя для кошки?",
+      "variants": []
+    }
+  },
+  "2": {
+    "type": "num",
+    "en": {
+      "text": "Please assign importance of data reliability for the system:",
+      "variants": [
+        "1",
+        "10",
+        "1"
+      ]
+    },
+    "ru": {
+      "text": "Насколько вам важна надёжность данных?",
+      "variants": [
+        "1",
+        "10",
+        "1"
+      ]
+    }
+  },
+
   "5": {
     "type": "open",
     "en": {
