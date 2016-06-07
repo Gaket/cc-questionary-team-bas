@@ -126,13 +126,27 @@ def get_statistics(lang="en"):
         chart_values = list()
         for key, item in data.items():
             if key == '1':
+                res[key] = dict()
+                chart_labels = []
+                chart_values = []
                 for name in questions[key].variants:
                     chart_labels.append(name)
-                res[key] = chart_labels
+                res[key]['labels'] = chart_labels
                 for val in item['answer']:
                     chart_values.append(float(val))
-                res[key] = chart_values
-        return render_template('statistics.html', data=data, lang=session['lang'])
+                res[key]['vals'] = chart_values
+            elif key in ['2', '3']:
+                res[key] = dict()
+                chart_labels = []
+                chart_values = []
+                [chart_labels.append(x) for x in range(10)]
+                res[key]['labels'] = chart_labels
+                for val in item['answer']:
+                    chart_values.append(float(val))
+                res[key]['vals'] = chart_values
+            else:
+                pass
+        return render_template('statistics.html', data=res, lang=session['lang'], quest=questions)
 
 
 @app.route('/lang', methods=["POST"])
