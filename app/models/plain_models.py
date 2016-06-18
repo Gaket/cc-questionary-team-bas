@@ -1,6 +1,3 @@
-from array import array
-
-
 class Question:
     def __init__(self):
         id = -1
@@ -35,3 +32,25 @@ class OpenQuestion(Question):
     def __init__(self, text):
         self.type = 'open'
         self.text = text
+
+
+class Answer:
+    def __init__(self):
+        question_id = -1
+
+
+class MultipleAnswersAnswer(Answer):
+    def __init__(self):
+        variants = []
+
+
+class NumericAnswer(Answer):
+    def __init__(self):
+        min = 1
+        max = 10
+        step = 1
+
+
+class OpenAnswer(Answer):
+    def __init__(self):
+        text = ''

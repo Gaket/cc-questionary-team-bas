@@ -2,7 +2,7 @@ import codecs
 import json
 import os
 
-from app.main.const import QUESTIONS_ADDR, AGGREGATED_ADDR
+from config import QUESTIONS_ADDR, AGGREGATED_ADDR
 from flask import session
 from random import randrange
 from flask import request

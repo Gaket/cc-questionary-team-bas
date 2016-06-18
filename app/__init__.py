@@ -6,5 +6,5 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 
 from app import views
-from app.model.db import models
+from app.models import db_models
 

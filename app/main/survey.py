@@ -1,10 +1,11 @@
-import codecs
 import json
 import time
-from app.model.question import NumericQuestion
-from app.model.question import MultipleAnswersQuestion
-from app.model.question import OpenQuestion
-from app.model.db.models import QuestionEn
+
+import codecs
+from app.models.db_models import QuestionEn
+from app.models.plain_models import MultipleAnswersQuestion
+from app.models.plain_models import NumericQuestion
+from app.models.plain_models import OpenQuestion
 
 
 class Survey:

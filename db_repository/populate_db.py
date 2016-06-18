@@ -1,8 +1,7 @@
-from app.main.const import QUESTIONS_TO_SHOW
-from app.model.db.models import QuestionEn, AnswerNum
-from app.model.db.models import AnswerEn
 from app import db
 from app.main.survey import getQuestionsFromJSON
+from app.models.db_models import AnswerEn
+from app.models.db_models import QuestionEn, AnswerNum
 
 qDict = getQuestionsFromJSON("../app/data/questions.json", "en", [1,2,3,4,5,6,7])
 for elem in qDict:
