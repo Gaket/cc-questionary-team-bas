@@ -9,12 +9,12 @@ from flask import request
 
 
 def getData(survey):
-    qs = []
+    qs = list()
     for key, item in survey.questions.items():
-        answer = []
+        answer = list()
         if item.type == 'mult':
             for var in item.variants:
-                if (request.form.get(var) is not None):
+                if request.form.get(var):
                     answer.append(request.form.get(var))
         else:
             answer.append(request.form.get(str(key)))
