@@ -5,13 +5,12 @@ from app.model.question import NumericQuestion
 from app.model.question import MultipleAnswersQuestion
 from app.model.question import OpenQuestion
 from app.model.db.models import QuestionEn
-from app import db
 
 
 class Survey:
-    def __init__(self, questionsAddr, lang, question_numbers):
+    def __init__(self, lang, question_numbers):
         self.hash = str(int(time.time())).__hash__()
-        self.questions = getQuestionsSQL(db, lang, question_numbers)
+        self.questions = getQuestionsSQL(lang, question_numbers)
 
 
 def getQuestionsFromJSON(questionsAddr, lang, question_numbers):
@@ -34,7 +33,7 @@ def getQuestionsFromJSON(questionsAddr, lang, question_numbers):
     return q
 
 
-def getQuestionsSQL(db, lang, question_numbers):
+def getQuestionsSQL(lang, question_numbers):
     # Parse JSON to get data and return list of questions (childs of Question)
     if lang == 'en':
         table = QuestionEn
@@ -53,7 +52,8 @@ def getQuestionsSQL(db, lang, question_numbers):
                 params = question.params
                 qDict[question.id] = NumericQuestion(question.text, [params.min, params.max, params.step])
             elif question.type == "mult":
-                qDict[question.id] = MultipleAnswersQuestion(question.text, question.answers)
+                textsAnswers = [answer.text for answer in question.answers]
+                qDict[question.id] = MultipleAnswersQuestion(question.text, textsAnswers)
             elif question.type == "open":
                 qDict[question.id] = OpenQuestion(question.text)
             else:

@@ -19,7 +19,7 @@ import os
 def hello():
     if 'lang' not in session:
         session['lang'] = 'en'
-    survey = Survey("app/data/questions.json", lang=session['lang'], question_numbers = QUESTIONS_TO_SHOW)
+    survey = Survey(lang=session['lang'], question_numbers=QUESTIONS_TO_SHOW)
     if request.method == 'GET':
         return render_template('index.html', survey=survey, lang=session['lang'])
     elif request.method == 'POST':
@@ -94,6 +94,7 @@ def get_statistics():
 def set_lang():
     session['lang'] = request.form.get('lang')
     return redirect('/')
+
 
 @app.route('/results')
 @app.route('/results/')

@@ -8,9 +8,10 @@ class QuestionEn(db.Model):
     answers = db.relationship('AnswerEn', backref='question')
     params = db.relationship('AnswerNum', backref='question', uselist=False)
 
-    def __init__(self, type, text):
+    def __init__(self, id, type, text):
         self.type = type
         self.text = text
+        self.id = id
 
     def __repr__(self):
         return '<Question %r>' % (self.text)
