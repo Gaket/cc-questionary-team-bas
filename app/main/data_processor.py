@@ -17,7 +17,7 @@ def getData(survey):
                 if (request.form.get(var) is not None):
                     answer.append(request.form.get(var))
         else:
-            answer.append(request.form.get(key))
+            answer.append(request.form.get(str(key)))
         qs.append({"question_id": key, "answer": answer})
     return qs
 
@@ -49,7 +49,7 @@ def write_aggregated(qs):
     aggregated = json.load(codecs.open(AGGREGATED_ADDR, 'r', 'utf-8-sig'))
     questions = json.load(codecs.open(QUESTIONS_ADDR, 'r', 'utf-8-sig'))
     for element in qs:
-        id_ = element["question_id"]
+        id_ = str(element["question_id"])
         # Ответ к id
         type_ = questions[id_]["type"]
         if id_ not in aggregated:
