@@ -14,7 +14,7 @@ class QuestionEn(db.Model):
         self.id = id
 
     def __repr__(self):
-        return '<Question %r>' % (self.text)
+        return '<Question: %r>' % (self.text)
 
 
 class AnswerEn(db.Model):

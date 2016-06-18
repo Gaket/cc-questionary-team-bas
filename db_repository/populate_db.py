@@ -15,5 +15,6 @@ for elem in qDict:
         v = AnswerNum(qDict[elem].min, qDict[elem].max, qDict[elem].step, q.id)
         db.session.add(v)
     db.session.commit()
+    print("Added question: " + QuestionEn)
 
 
