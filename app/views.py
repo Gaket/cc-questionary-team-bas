@@ -98,5 +98,8 @@ def set_lang():
 @app.route('/results')
 @app.route('/results/')
 def show_results():
-    res = getRawData()
-    return render_template('results.html', res=res, lang=session['lang'])
+    if 'admin' not in session:
+        return redirect(url_for('check_login'))
+    else:
+        res = getRawData()
+        return render_template('results.html', res=res, lang=session['lang'])
