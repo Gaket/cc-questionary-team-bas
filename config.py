@@ -1,9 +1,10 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+SQLALCHEMY_DATABASE_URI = 'postgresql://bas:bas@localhost/bas'
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 
 QUESTIONS_ADDR = "app/data/questions.json"
 AGGREGATED_ADDR = "app/data/aggregated_data.json"
