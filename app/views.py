@@ -3,7 +3,7 @@ import codecs
 from app import app
 from app.main.const import QUESTIONS_ADDR, QUESTIONS_TO_STATISTICS
 from app.main.data_processor import getRawData, getData, write_answer, write_aggregated
-from app.main.survey import Survey, getQuestions
+from app.main.survey import Survey, getQuestionsFromJSON
 from flask import render_template
 from flask import request
 from flask import session
@@ -52,7 +52,7 @@ def get_statistics():
     if 'lang' not in session:
         session['lang'] = 'en'
     else:
-        questions = getQuestions(QUESTIONS_ADDR, session['lang'], QUESTIONS_TO_STATISTICS)
+        questions = getQuestionsFromJSON(QUESTIONS_ADDR, session['lang'], QUESTIONS_TO_STATISTICS)
         data = json.load(open(os.path.join('app',
                                            'data',
                                            'aggregated_data.json')))

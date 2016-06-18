@@ -4,7 +4,6 @@ from array import array
 class Question:
     def __init__(self):
         id = -1
-        text = ''
 
 
 class MultipleAnswersQuestion(Question):
