@@ -3,7 +3,7 @@ from app import db
 
 class QuestionEn(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.String(32), index=True)
+    type = db.Column(db.String(256), index=True)
     text = db.Column(db.String(256), index=True)
     answers = db.relationship('AnswerEn', backref='question')
     params = db.relationship('AnswerNum', backref='question', uselist=False)

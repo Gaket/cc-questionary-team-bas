@@ -19,17 +19,19 @@
                     {% if value['type'] == 'mult' %}
                         <div class="checkbox">
                             {% for ans in value['variants'] %}
-                                <label>
-                                    <input type="checkbox" name="{{ ans }}"
-                                           value="{{ ans }}" required> {{ ans }}
-                                </label>
+                                    <ul>
+                                        <li>
+                                            <input type="checkbox" name="{{ ans }}"
+                                                   value="{{ ans }}" required> {{ ans }}
+                                        </li>
+                                    </ul>
                             {% endfor %}
                         </div>
                     {% elif value['type'] == 'num' %}
                         <div class="range">
 
                             <input type="range" min="{{ value.min }}" max="{{ value.max }}" step="{{ value.step }}"
-                                   value="{{ value.min }}, {{ value.max }}" name="{{ key }}" required> (1 ... 10)
+                                   value="{{ value.min }}, {{ value.max }}" name="{{ key }}" required> ({{ value.min }} ... {{ value.max }})
                         </div>
                     {% elif value['type'] == 'open' %}
                         <div class="text_field">

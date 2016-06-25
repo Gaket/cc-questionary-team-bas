@@ -2,30 +2,30 @@
   "1": {
     "type": "mult",
     "en": {
-      "text": "What type of database are you planning to connect the system?",
+      "text": "Group",
       "variants": [
-        "MySQL",
-        "PostgreSQL",
-        "MSSQL",
-        "Hadoop",
-        "Oracle"
+        "Igor, Irina, Konstantin",
+        "Sasha, Idar, Artem",
+        "Anton, Azamat, Alexandr",
+        "Pavel, Alexandra",
+        "Artur, Vyacheslav, Bulat"
       ]
     },
     "ru": {
-      "text": "Какие типы баз данных вы планируете подключить к системе?",
+      "text": "Группа",
       "variants": [
-        "MySQL",
-        "PostgreSQL",
-        "MSSQL",
-        "Hadoop",
-        "Oracle"
+        "Igor, Irina, Konstantin",
+        "Sasha, Idar, Artem",
+        "Anton, Azamat, Alexandr",
+        "Pavel, Alexandra",
+        "Artur, Vyacheslav, Bulat"
       ]
     }
   },
-  "6": {
+  "2": {
     "type": "num",
     "en": {
-      "text": "What is the right number of cats?",
+      "text": "Deployment process:  is it good and is it clearly described?",
       "variants": [
         "1",
         "10",
@@ -33,7 +33,7 @@
       ]
     },
     "ru": {
-      "text": "Сколько тут кошек?",
+      "text": "Описание интеграции",
       "variants": [
         "1",
         "10",
@@ -44,73 +44,96 @@
   "3": {
     "type": "num",
     "en": {
-      "text": "Please assign importance of system ability to process data in real-time:",
+      "text": "Does the application meet all the requirements?",
       "variants": [
         "1",
-        "10",
+        "20",
         "1"
       ]
     },
     "ru": {
-      "text": "Насколько вам важна возможность обработки данных в режиме реального времени?",
+      "text": "Качество приложения",
       "variants": [
         "1",
-        "10",
+        "20",
         "1"
       ]
     }
   },
   "4": {
-    "type": "open",
-    "en": {
-      "text": "What are the most important aspects for UI of the system?",
-      "variants": []
-    },
-    "ru": {
-      "text": "Какие особенности пользовательского интерфейса для вас наиболее важны?",
-      "variants": []
-    }
-  },
-  "7": {
-    "type": "open",
-    "en": {
-      "text": "What is the best name for a cat?",
-      "variants": []
-    },
-    "ru": {
-      "text": "Лучшее имя для кошки?",
-      "variants": []
-    }
-  },
-  "2": {
     "type": "num",
     "en": {
-      "text": "Please assign importance of data reliability for the system:",
+      "text": "Are the scaling option well chosen and well described?  Is this a good way to scale?",
       "variants": [
         "1",
-        "10",
+        "20",
         "1"
       ]
     },
     "ru": {
-      "text": "Насколько вам важна надёжность данных?",
+      "text": "Описание маштабируемости",
       "variants": [
         "1",
-        "10",
+        "20",
         "1"
       ]
     }
   },
-
   "5": {
-    "type": "open",
+    "type": "num",
     "en": {
-      "text": "Who is the main customers of the system?",
-      "variants": []
+      "text": "Are the management options well described?  Do they describe the management information you would want for your application?",
+      "variants": [
+        "1",
+        "20",
+        "1"
+      ]
     },
     "ru": {
-      "text": "Кто является вашими основными заказчиками?",
-      "variants": []
+      "text": "Описание опций управления",
+      "variants": [
+        "1",
+        "20",
+        "1"
+      ]
+    }
+  },
+  "6": {
+    "type": "num",
+    "en": {
+      "text": "Are the analytics well described? Do they describe how you would get the information you would want and why this is a good approach?",
+      "variants": [
+        "1",
+        "20",
+        "1"
+      ]
+    },
+    "ru": {
+      "text": "Описание возможностей мониторинга",
+      "variants": [
+        "1",
+        "20",
+        "1"
+      ]
+    },
+    "7": {
+      "type": "num",
+      "en": {
+        "text": "Is the comparison between IaaS and PaaS clear and convincing?",
+        "variants": [
+          "1",
+          "10",
+          "1"
+        ]
+      },
+      "ru": {
+        "text": "Сравнение PaaS и IaaS",
+        "variants": [
+          "1",
+          "10",
+          "1"
+        ]
+      }
     }
   }
 }
