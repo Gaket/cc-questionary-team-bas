@@ -82,7 +82,10 @@ def get_statistics():
                     sum += float(val) * cnt
                     cnt += 1
                 res[key]['vals'] = chart_values
-                res[key]['avg'] = sum / len(chart_values)
+                if len(chart_values):
+                    res[key]['avg'] = sum / len(chart_values)
+                else:
+                    res[key]['avg'] = 0
             else:
                 res[key] = dict()
                 res[key]['open'] = item['answer']

@@ -70,7 +70,7 @@ def write_aggregated(qs):
                 step_ = questions[id_][session['lang']]['variants'][2]
                 # fill list with zeroes
                 # agg_answer = [0] * int((max_ - min_ + 1) / step_)
-                agg_answer = [0] * 10
+                agg_answer = [0] * 30
             agg_answer[int(answer[0]) - 1] += 1
         elif type_ == 'open':
             agg_answer.append(answer[0])
