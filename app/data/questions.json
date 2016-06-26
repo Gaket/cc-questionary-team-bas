@@ -27,7 +27,7 @@
     "en": {
       "text": "Deployment process:  is it good and is it clearly described?",
       "variants": [
-        "1",
+        "0",
         "10",
         "1"
       ]
@@ -35,7 +35,7 @@
     "ru": {
       "text": "Описание интеграции",
       "variants": [
-        "1",
+        "0",
         "10",
         "1"
       ]
@@ -46,7 +46,7 @@
     "en": {
       "text": "Does the application meet all the requirements?",
       "variants": [
-        "1",
+        "0",
         "20",
         "1"
       ]
@@ -54,7 +54,7 @@
     "ru": {
       "text": "Качество приложения",
       "variants": [
-        "1",
+        "0",
         "20",
         "1"
       ]
@@ -65,7 +65,7 @@
     "en": {
       "text": "Are the scaling option well chosen and well described?  Is this a good way to scale?",
       "variants": [
-        "1",
+        "0",
         "20",
         "1"
       ]
@@ -73,7 +73,7 @@
     "ru": {
       "text": "Описание маштабируемости",
       "variants": [
-        "1",
+        "0",
         "20",
         "1"
       ]
@@ -84,7 +84,7 @@
     "en": {
       "text": "Are the management options well described?  Do they describe the management information you would want for your application?",
       "variants": [
-        "1",
+        "0",
         "20",
         "1"
       ]
@@ -92,7 +92,7 @@
     "ru": {
       "text": "Описание опций управления",
       "variants": [
-        "1",
+        "0",
         "20",
         "1"
       ]
@@ -103,7 +103,7 @@
     "en": {
       "text": "Are the analytics well described? Do they describe how you would get the information you would want and why this is a good approach?",
       "variants": [
-        "1",
+        "0",
         "20",
         "1"
       ]
@@ -111,7 +111,7 @@
     "ru": {
       "text": "Описание возможностей мониторинга",
       "variants": [
-        "1",
+        "0",
         "20",
         "1"
       ]
@@ -122,7 +122,7 @@
       "en": {
         "text": "Is the comparison between IaaS and PaaS clear and convincing?",
         "variants": [
-          "1",
+          "0",
           "10",
           "1"
         ]
@@ -130,7 +130,7 @@
       "ru": {
         "text": "Сравнение PaaS и IaaS",
         "variants": [
-          "1",
+          "0",
           "10",
           "1"
         ]

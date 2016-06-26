@@ -15,10 +15,20 @@ $("#loginform").submit(function(event) {
 
   // Send the data using post
   var posting = $.post( url, { user: user, password: password } );
+});
 
-  // Put the results in a div
-  // posting.done(function( data ) {
-  //   var content = $( data ).find( "#content" );
-  //   $( "#result" ).empty().append( content );
-  // });
+
+$(document).ready(function(){
+
+  $("[type=range]").each(function () {
+    var newval=$(this).val(),
+        cls = $(this).attr("class");
+    $("span." + cls).text(newval)
+  });
+  var ran = $("[type=range]");
+  ran.on("change mousemove", function(){
+    var newval=$(this).val(),
+        cls = $(this).attr("class");
+    $("span." + cls).text(newval);
+  });
 });
