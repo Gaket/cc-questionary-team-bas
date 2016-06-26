@@ -48,6 +48,14 @@
                     </a>
                 </li>
                 <li role="presentation">
+                    <a class="btn btn-warning" href="/stat_group">
+                        <!--Results-->
+                        {% if lang == 'en' %} Group stat
+                        {% elif lang == 'ru' %} Гр. стат
+                        {% endif %}
+                    </a>
+                </li>
+                <li role="presentation">
                     <a href="/login">
                         <!--Login-->
                         {% if lang == 'en' %} Log In

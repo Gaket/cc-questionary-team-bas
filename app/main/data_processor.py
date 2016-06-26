@@ -43,9 +43,6 @@ def write_answer(qs):
 
 
 def write_aggregated(qs):
-    # with open('app//data//raw//result_' + str(hash) + '.json', 'w') as fp:
-    #     for element in qs:
-    #         for key, value in element:
     aggregated = json.load(codecs.open(AGGREGATED_ADDR, 'r', 'utf-8-sig'))
     questions = json.load(codecs.open(QUESTIONS_ADDR, 'r', 'utf-8-sig'))
     for element in qs:
@@ -63,15 +60,13 @@ def write_aggregated(qs):
         answer = element['answer']
         # Проверить три типа вопросов, добавить ответы для каждого
         if type_ == "num":
+            min_ = int(questions[id_][session['lang']]['variants'][0])
+            max_ = int(questions[id_][session['lang']]['variants'][1])
+            step_ = int(questions[id_][session['lang']]['variants'][2])
             # if this question was not answered before
             if not agg_answer:
-                min_ = questions[id_][session['lang']]['variants'][0]
-                max_ = questions[id_][session['lang']]['variants'][1]
-                step_ = questions[id_][session['lang']]['variants'][2]
-                # fill list with zeroes
-                # agg_answer = [0] * int((max_ - min_ + 1) / step_)
-                agg_answer = [0] * 30
-            agg_answer[int(answer[0]) - 1] += 1
+                agg_answer = [0] * int((max_ - min_ + 1) / step_ + 1)
+            agg_answer[int(answer[0]) - min_] += 1
         elif type_ == 'open':
             agg_answer.append(answer[0])
         elif type_ == 'mult':

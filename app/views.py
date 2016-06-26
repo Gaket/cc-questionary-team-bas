@@ -56,8 +56,7 @@ def get_statistics():
                                            'data',
                                            'aggregated_data.json')))
         res = dict()
-        chart_labels = list()
-        chart_values = list()
+        # aggregating
         for key, item in data.items():
             if questions[key].type == 'mult':
                 res[key] = dict()
@@ -73,20 +72,20 @@ def get_statistics():
                 res[key] = dict()
                 chart_labels = []
                 chart_values = []
-                sum = 0
-                [chart_labels.append(x) for x in range(1, 11)]
+                sum_ = 0
+                [chart_labels.append(x) for x in range(0, 21)]
                 res[key]['labels'] = chart_labels
                 cnt = 0
                 for val in item['answer']:
                     chart_values.append(float(val))
-                    sum += float(val) * cnt
+                    sum_ += float(val) * cnt
                     cnt += 1
                 res[key]['vals'] = chart_values
                 if len(chart_values):
-                    res[key]['avg'] = sum / len(chart_values)
+                    res[key]['avg'] = sum_ / len(chart_values)
                 else:
                     res[key]['avg'] = 0
-            else:
+            elif questions[key].type == 'open':
                 res[key] = dict()
                 res[key]['open'] = item['answer']
         return render_template('statistics.html', res=res, lang=session['lang'], quest=questions)
@@ -106,3 +105,40 @@ def show_results():
     else:
         res = getRawData()
         return render_template('results.html', res=res, lang=session['lang'])
+
+
+@app.route('/stat_group')
+@app.route('/stat_group/')
+def show_group_stat():
+    if 'admin' not in session:
+        return redirect(url_for('check_login'))
+    else:
+        raw = getRawData()
+        qs = getQuestionsFromJSON(QUESTIONS_ADDR, session['lang'], QUESTIONS_TO_STATISTICS)
+        stat = list()
+        # stat = [ {name: answer#1_name,
+        #           results: [0,0,0,0,0,0,0],
+        #           total: int,
+        #           surveyed: int} ]
+        for hash_, sur in raw.items():
+            rec = dict()
+            rec['result'] = list()
+            rec['surveyed'] = 0
+            rec['total'] = 0
+            for a in sur:
+                if a['question_id'] == 1:
+                    rec['name'] = a['answer'][0]
+                else:
+                    rec['result'].append(int(a['answer'][0]))
+            rec['total'] = sum(rec['result'])
+            if rec['name'] not in [r['name'] for r in stat]:
+                rec['surveyed'] += 1
+                stat.append(rec)
+            else:
+                for r in stat:
+                    if r['name'] == rec['name']:
+                        r['result'] = [int(sum(i) / 2) for i in zip(r['result'], rec['result'])]
+                        r['total'] = sum(r['result'])
+                        r['surveyed'] += 1
+        print(stat)
+        return render_template('stat_group.html', stat=stat, lang=session['lang'])
