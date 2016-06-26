@@ -6,7 +6,7 @@
             <div>
                 <ul>
                     {% for el in rec['result'] %}
-                        <li>Question {{ rec['result'].index(el) }}: {{ el }}</li>
+                        <li>Question {{loop.index + 1}}: {{ el }}</li>
                     {% endfor %}
                 </ul>
                 <span> Total: {{ rec['total'] }}. Surveyed: {{ rec['surveyed'] }}</span>
