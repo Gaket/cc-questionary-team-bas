@@ -75,14 +75,16 @@ def get_statistics():
                 sum_ = 0
                 [chart_labels.append(x) for x in range(0, 21)]
                 res[key]['labels'] = chart_labels
-                cnt = 0
+                element_number = 0
+                total_cnt = 0
                 for val in item['answer']:
                     chart_values.append(float(val))
-                    sum_ += float(val) * cnt
-                    cnt += 1
+                    sum_ += float(val) * element_number
+                    element_number += 1
+                    total_cnt += float(val)
                 res[key]['vals'] = chart_values
-                if cnt > 0:
-                    res[key]['avg'] = sum_ / cnt
+                if total_cnt > 0:
+                    res[key]['avg'] = float(sum_ )/ total_cnt
                 else:
                     res[key]['avg'] = 0
             elif questions[key].type == 'open':
