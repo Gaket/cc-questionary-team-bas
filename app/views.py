@@ -121,7 +121,8 @@ def show_group_stat():
         # stat = [ {name: answer#1_name,
         #           results: [0,0,0,0,0,0,0],
         #           total: int,
-        #           surveyed: int} ]
+        #           surveyed: int},
+        #           comments: list of str ]
         for hash_, sur in raw.items():
             rec = dict()
             rec['result'] = list()
@@ -143,7 +144,7 @@ def show_group_stat():
             else:
                 for r in stat:
                     if r['name'] == rec['name']:
-                        r['result'] = [int(sum(i) / 2) for i in zip(r['result'], rec['result'])]
+                        r['result'] = [float(sum(i)) / 2 for i in zip(r['result'], rec['result'])]
                         r['total'] = sum(r['result'])
                         r['surveyed'] += 1
                         # Something like this
