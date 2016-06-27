@@ -135,5 +135,14 @@
           "1"
         ]
       }
+    },
+    "8": {
+      "type": "open",
+      "en": {
+        "text": "Please, highlight some of interesting (or arguable) points of work"
+      },
+      "ru": {
+        "text": "Назовите плюсы и минусы работы"
+      }
     }
 }
