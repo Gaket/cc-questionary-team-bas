@@ -12,8 +12,7 @@
         <ul>
             <li> Comments:</li>
             {% for el in rec['comments'] %}
-            ---
-            {{el}}
+            ---{{el}} <br>
             {% endfor %}
         </ul>
         <span> Total: {{ rec['total'] }}. Surveyed: {{ rec['surveyed'] }}</span>

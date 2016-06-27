@@ -127,13 +127,13 @@ def show_group_stat():
             rec['result'] = list()
             rec['surveyed'] = 0
             rec['total'] = 0
-            rec['comments'] = ""
+            rec['comments'] = []
             for a in sur:
                 # TODO: remove hardcode
                 if a['question_id'] == 1:
                     rec['name'] = a['answer'][0]
                 elif a['question_id'] == 8:
-                    rec['comments'] = a['answer'][0]
+                    rec['comments'].append(a['answer'][0])
                 else:
                     rec['result'].append(int(a['answer'][0]))
             rec['total'] = sum(rec['result'])
@@ -147,7 +147,7 @@ def show_group_stat():
                         r['total'] = sum(r['result'])
                         r['surveyed'] += 1
                         # Something like this
-                        r['comments'] += "<br>---" + (rec['comments'])
+                        r['comments'] += (rec['comments'])
 
             # r['comments']
         print(stat)
