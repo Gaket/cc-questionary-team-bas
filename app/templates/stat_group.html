@@ -1,19 +1,26 @@
 {% extends "layout.html" %}
 {% block content %}
+<div>
+    {% for rec in stat %}
+    <h4>Group {{ rec['name'] }}</h4>
     <div>
-        {% for rec in stat %}
-            <h4>Group {{ rec['name'] }}</h4>
-            <div>
-                <ul>
-                    {% for el in rec['result'] %}
-                        <li>Question {{loop.index + 1}}: {{ el }}</li>
-                    {% endfor %}
-                </ul>
-                <span> Total: {{ rec['total'] }}. Surveyed: {{ rec['surveyed'] }}</span>
+        <ul>
+            {% for el in rec['result'] %}
+            <li>Question {{loop.index + 1}}: {{ el }}</li>
+            {% endfor %}
+        </ul>
+        <ul>
+            <li> Comments:</li>
+            {% for el in rec['comments'] %}
+            ---
+            {{el}}
+            {% endfor %}
+        </ul>
+        <span> Total: {{ rec['total'] }}. Surveyed: {{ rec['surveyed'] }}</span>
 
-            </div>
-            <br>
-        {% endfor %}
     </div>
+    <br>
+    {% endfor %}
+</div>
 
 {% endblock %}
