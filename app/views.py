@@ -73,7 +73,7 @@ def get_statistics():
                 chart_labels = []
                 chart_values = []
                 sum_ = 0
-                [chart_labels.append(x) for x in range(0, 21)]
+                [chart_labels.append(x) for x in range(0, len(item['answer']))]
                 res[key]['labels'] = chart_labels
                 element_number = 0
                 total_cnt = 0
