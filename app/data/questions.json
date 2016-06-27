@@ -139,10 +139,12 @@
     "8": {
       "type": "open",
       "en": {
-        "text": "Please, highlight some of interesting (or arguable) points of work"
+        "text": "Please, highlight some of interesting (or arguable) points of work",
+        "variants": []
       },
       "ru": {
-        "text": "Назовите плюсы и минусы работы"
+        "text": "Назовите плюсы и минусы работы",
+        "variants": []
       }
     }
 }

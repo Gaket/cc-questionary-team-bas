@@ -4,6 +4,7 @@ from config import SQLALCHEMY_MIGRATE_REPO
 from app import db
 import os.path
 
+db.drop_all()
 db.create_all()
 print("Tables created succesfully")
 if not os.path.exists(SQLALCHEMY_MIGRATE_REPO):
