@@ -81,8 +81,8 @@ def get_statistics():
                     sum_ += float(val) * cnt
                     cnt += 1
                 res[key]['vals'] = chart_values
-                if len(chart_values):
-                    res[key]['avg'] = sum_ / len(chart_values)
+                if cnt > 0:
+                    res[key]['avg'] = sum_ / cnt
                 else:
                     res[key]['avg'] = 0
             elif questions[key].type == 'open':
