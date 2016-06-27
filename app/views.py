@@ -142,12 +142,13 @@ def show_group_stat():
                 stat.append(rec)
             else:
                 for r in stat:
-                    r['comments'] = list()
                     if r['name'] == rec['name']:
                         r['result'] = [int(sum(i) / 2) for i in zip(r['result'], rec['result'])]
                         r['total'] = sum(r['result'])
                         r['surveyed'] += 1
                         # Something like this
-                        #r['comments'].append(rec['comments'])
+                        r['comments'] += "<br>---" + (rec['comments'])
+
+            # r['comments']
         print(stat)
         return render_template('stat_group.html', stat=stat, lang=session['lang'])
